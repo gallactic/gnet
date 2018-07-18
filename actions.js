@@ -12,8 +12,8 @@ module.exports = class Action {
         if(config == undefined){
             this._Config = {
                 config_name:"config.json",
-                burrow_url:"http://localhost:1337/rpc",
-                burrow_path:"$HOME/burrow"
+                gallactic_url:"http://localhost:1337/rpc",
+                gallactic_path:"$HOME/gallactic"
             }
         }
         else{
@@ -38,7 +38,7 @@ module.exports = class Action {
         }
         else{
             let Unsafe = require("./libs/transactions/unsafe");
-            this._unsafeTx = new Unsafe(this._Config.burrow_url);
+            this._unsafeTx = new Unsafe(this._Config.gallactic_url);
             return this._unsafeTx;
         }
     }     
@@ -49,7 +49,7 @@ module.exports = class Action {
         }
         else{
             let SendTx = require("./libs/transactions/send");
-            this._sendTx = new SendTx(this._Config.burrow_url);
+            this._sendTx = new SendTx(this._Config.gallactic_url);
             return this._sendTx;
         }
     } 
@@ -60,7 +60,7 @@ module.exports = class Action {
         }
         else{
             let CallTx = require("./libs/transactions/call");
-            this._callTx = new CallTx(this._Config.burrow_url);
+            this._callTx = new CallTx(this._Config.gallactic_url);
             return this._callTx;
         }
     } 
@@ -71,7 +71,7 @@ module.exports = class Action {
         }
         else{
             let BondTx = require("./libs/transactions/bond");
-            this._bondTx = new BondTx(this._Config.burrow_url);
+            this._bondTx = new BondTx(this._Config.gallactic_url);
             return this._bondTx;
         }
     } 
@@ -82,7 +82,7 @@ module.exports = class Action {
         }
         else{
             let UnbondTx = require("./libs/transactions/unbond");
-            this._unbondTx = new UnbondTx(this._Config.burrow_url);
+            this._unbondTx = new UnbondTx(this._Config.gallactic_url);
             return this._unbondTx;
         }
     } 
@@ -93,7 +93,7 @@ module.exports = class Action {
         }
         else{
             let Accounts = require("./libs/accounts") ;
-            this._accounts = new Accounts(this._Config.burrow_url);
+            this._accounts = new Accounts(this._Config.gallactic_url);
             return this._accounts;
         }
     } 
@@ -126,7 +126,7 @@ module.exports = class Action {
         }
         else{
             let Blockchain = require("./libs/blockchain");
-            this._blockchain = new Blockchain(this._Config.burrow_url);
+            this._blockchain = new Blockchain(this._Config.gallactic_url);
             return this._blockchain;
         }
     }   
@@ -137,7 +137,7 @@ module.exports = class Action {
         }            
         else{
             let Deploy  = require("./libs/deploy");
-            this.deploy = new Deploy(this._Config.burrow_url);
+            this.deploy = new Deploy(this._Config.gallactic_url);
             return this.deploy;
         }         
     }
@@ -320,96 +320,13 @@ module.exports = class Action {
         }
     }
 
-    burrow(){
-        try{
-            let shell = require('shelljs');
-            let cmd = __dirname + '/burrow/burrow.sh';
-            let child = shell.exec(cmd, {async:true});
-            child.stdout.on('data', function(data) {
-            });            
-            
-        }
-        catch(ex){
-            logger.error(ex);       
-        }
-    }
-
-    installBurrow(){
-
-        let burrow_files = "";        
-
-        if(os.type() === "Linux")
-            burrow_files = '/burrow/burrow-linux';
-        else if (os.type() === "Darwin")
-            burrow_files = '/burrow/burrow-darwin';              
-        else{
-            logger.console("snak does not support your OS type: " + os.type());
-            return;
-        }
-        try{
-            let shell = require('shelljs');
-            let cmd = __dirname + '/burrow/install.sh ' + __dirname + burrow_files;
-            let child = shell.exec(cmd, {async:true});
-            child.stdout.on('data', function(data) {
-            });
-            
-        }
-        catch(ex){
-            logger.error(ex);       
-        }
-    }
-
-    uninstallBurrow(){
-        try{
-            let shell = require('shelljs');
-            let cmd = __dirname + '/burrow/uninstall.sh';
-            let child = shell.exec(cmd, {async:true});
-            child.stdout.on('data', function(data) {
-            });
-            
-        }
-        catch(ex){
-            logger.error(ex);       
-        }
-    }
-
     callFunction(contract_name,function_name,parameters_list){
         
         try{
-            this._functionHandler().callFunction(this._Config.burrow_url,contract_name,function_name,parameters_list);
+            this._functionHandler().callFunction(this._Config.gallactic_url,contract_name,function_name,parameters_list);
         }
         catch(ex){
             logger.error(ex);   
-        }
-    }
-
-    runMonaxKeys(ip_address){
-
-        let burrow_files = "";        
-
-        if(os.type() === "Linux")
-            burrow_files = '/burrow/burrow-linux';
-        else if (os.type() === "Darwin")
-            burrow_files = '/burrow/burrow-darwin';              
-        else{
-            logger.console("snak does not support your OS type: " + os.type());
-            return;
-        }
-        try{
-            let shell = require('shelljs');
-            let cmd = "";
-            if(ip_address == "")
-                cmd = __dirname + burrow_files + '/monax-keys server &';
-            else 
-                cmd = __dirname + burrow_files + '/monax-keys --host ' + ip_address + ' server &';   
-
-            let child = shell.exec(cmd, {async:true});
-            child.stdout.on('data', function(data) {
-            });            
-        }
-        catch(ex){
-            logger.error(ex);
-            throw ex;                   
         }
     }
 
@@ -493,41 +410,6 @@ module.exports = class Action {
         .catch(ex => {
             logger.error(ex);
         });
-    }
-
-    importKeys(file_name){
-
-        let burrow_files = "";        
-
-        if(os.type() == "Linux")
-            burrow_files = '/burrow/burrow-linux';
-        else if (os.type() == "Darwin")
-            burrow_files = '/burrow/burrow-darwin';              
-        else{
-            logger.error("snak does not support your OS type: " + os.type());
-            return;
-        }
-
-        let fs = require('fs');
-        if (fs.existsSync(file_name)) {
-            let keys = JSON.parse(fs.readFileSync(file_name,'utf-8'));
-            keys.forEach(element => {
-                
-                try{
-                    let shell = require('shelljs');
-                    let cmd = __dirname + burrow_files + '/monax-keys import ' + element.privKey + ' --no-pass';
-                    let child = shell.exec(cmd, {async:true});
-                    child.stdout.on('data', function(data) {
-                    });            
-                }
-                catch(ex){
-                    logger.error(ex);       
-                }
-            });
-        }
-        else{
-            logger.error("Couldn't find the file " + file_name);
-        }
     }
 
     broadcastSend(privKey,address,amount){                

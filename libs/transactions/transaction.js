@@ -1,14 +1,14 @@
 'use strict'
 
 
-var burrowDbFactory = require('burrow-db');
+var gallacticDbFactory = require('burrow-db');
 
 module.exports = class Transaction {
 
     constructor(connectionUrl) {   
 
-        let burrow   = burrowDbFactory.createInstance(connectionUrl);
-        this._Trx     = burrow.txs();  
+        let gallactic   = gallacticDbFactory.createInstance(connectionUrl);
+        this._Trx     = gallactic.txs();  
         let TenderKeys   = require("tenderkeys");
         this._tenderKeys = new TenderKeys;
         this.connectionUrl = connectionUrl;      

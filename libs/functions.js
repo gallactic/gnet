@@ -58,14 +58,14 @@ module.exports = class Functions{
     }
     
     
-    callFunction(burrow_URL, contract_name, function_name, input) {
+    callFunction(connection_URL, contract_name, function_name, input) {
     
         var _this = this;
         this._getMigrateObj(contract_name, function_name).then((migrate_object) => {
     
             try {
                 let account_path = schema.project_path + schema.accounts + schema.default_account;
-                let contractManager = contracts.newContractManagerDev(burrow_URL, JSON.parse(fs.readFileSync(account_path, 'utf-8')));
+                let contractManager = contracts.newContractManagerDev(connection_URL, JSON.parse(fs.readFileSync(account_path, 'utf-8')));
                 let ContractFactory = contractManager.newContractFactory(migrate_object.abi);
     
                 ContractFactory.at(migrate_object.address, function (error, contract) {

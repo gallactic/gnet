@@ -1,7 +1,7 @@
 {
-  "name": "snak",
-  "version": "0.1.1",
-  "description": "Tooling for interacting with Hyperledger Burrow",
+  "name": "nova",
+  "version": "0.0.1",
+  "description": "Tooling for interacting with Gallactic blockchain node",
   "main": "index.js",
   "author": "Ahmad Pouladzadeh <pouladzade@gmail.com>",
   "license": "MIT",
@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pouladzade/snack.git"
+    "url": "https://github.com/gallactic/Nova"
   }
 }
  

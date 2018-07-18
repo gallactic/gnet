@@ -1,5 +1,5 @@
 
-var burrowDbFactory = require('burrow-db');
+var gallacticDbFactory = require('burrow-db');
 var fs              = require('fs');
 var path            = require('path'); 
 var schema          = require('./schema').Schema;
@@ -9,8 +9,8 @@ var accounts        = null;
 module.exports = class Accounts {
 
     constructor(connectionUrl){
-        var burrow = burrowDbFactory.createInstance(connectionUrl);
-        accounts = burrow.accounts();
+        var gallactic = gallacticDbFactory.createInstance(connectionUrl);
+        accounts = gallactic.accounts();
     }
     
     loadAccounts(){

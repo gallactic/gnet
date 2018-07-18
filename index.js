@@ -23,7 +23,7 @@ var actions = new Actions(config);
 
   program
   .version('0.0.1')
-  .description('Burrow deployment tools');
+  .description('Nova');
 
   program
   .command('init')
@@ -42,7 +42,7 @@ var actions = new Actions(config);
   .command('migrate [accountname] ')
   .option('-f, --force', 'forcely migrate the contracts')
   .alias('mgt')
-  .description('\ndeploy contract on the Burrow\
+  .description('\ndeploy contract on the Gallactic\
   \nyou need to initialize a project before using this command.\n\n')
   .action((accountname,cmd) => actions.migrate(accountname,cmd.force));
 
@@ -114,35 +114,6 @@ var actions = new Actions(config);
   .action((priv_key,address,amount,cmd) => actions.send(priv_key,address,parseInt(amount),cmd.unsafe));
 
   program
-  .command('random_transact <count>')
-  .alias('rtx')
-  .description("\n(Unsafe!)Doing random Transaction, \
-  \nyou need to initialize a project before using this command\
-  \nyou should put a list of accounts(name = account_list.json) in accounts folder first!.\n\n")
-  .action((count) => actions.randomTransact(count));
-
-  program
-  .command('install_burrow')
-  .alias('insl')
-  .description('\ninstall burrow blockchain, and copy the files to the home directory (.burrow), \
-  \nNo need to initialize project for this command.\n\n')
-  .action(() => actions.installBurrow());
-
-  program
-  .command('uninstall_burrow')
-  .alias('unsl')
-  .description('\nuninstall burrow blockchain, and back up the files to the home directory (burrow-backup), \
-  \nNo need to initialize project for this command.\n\n')
-  .action(() => actions.uninstallBurrow());
-
-  program
-  .command('run_burrow')
-  .alias('rnbrw')
-  .description('\nrun burrow blockchain,you need install burrow first!, \
-  \nNo need to initialize project for this command.\n\n')
-  .action(() => actions.burrow());
-
-  program
   .command('*')
   .action(function(others){
     console.log('[Error] There isn\'t any command for "%s" \n\
@@ -155,20 +126,6 @@ var actions = new Actions(config);
   .description("\nCalls the function of specefic contract, you need to pass the list of parameters like this var1,var2,...,varK ,comma separated, \
   \nYou need to initialize a project before using this command.\n\n")
   .action((contract_name,function_name,parameters_list) => actions.callFunction(contract_name,function_name,parameters_list));
-
-  program
-  .command('run_monax_keys [ip_address]')
-  .alias('rks')
-  .description("\nRuns the Monax key server on port 4776, \
-  \nNo need to initialize a project before using this command.\n\n")
-  .action((ip_address) => actions.runMonaxKeys(ip_address));
-
-  program
-  .command('import_keys <file_name>')
-  .alias('imks')
-  .description("\nImport keys in the monax key server\
-  \nNo need to initialize a project before using this command.\n\n")
-  .action((file_name) => actions.importKeys(file_name));
 
   program
   .command('chain_id')
@@ -223,7 +180,7 @@ var actions = new Actions(config);
   .command('config')
   .alias('conf')
   .description("\nGet the current config of the snak\
-  \nIf you haven't created any project burrow url will be http://127.0.0.1:1337/rpc by default\
+  \nIf you haven't created any project gallactic url will be http://127.0.0.1:1337/rpc by default\
   \nYou may need to initialize a project before using this command.\n\n")
   .action(() => actions.getConfig());
 
