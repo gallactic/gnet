@@ -23,7 +23,7 @@ var actions = new Actions(config);
 
   program
   .version('0.0.1')
-  .description('Nova');
+  .description('gnet');
 
   program
   .command('init')

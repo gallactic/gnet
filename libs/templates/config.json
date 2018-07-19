@@ -1,5 +1,5 @@
 {
 	"config_name":"config.json",
 	"burrow_url":"http://localhost:1337/rpc",
-	"burrow_path":"$HOME/burrow"
+	"burrow_path":"$HOME/gallactic"
 }

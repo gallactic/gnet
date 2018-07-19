@@ -1,11 +1,11 @@
-![Nova](https://thumb.ibb.co/bWVvmS/snack.png "Nova")
+![gnet](https://thumb.ibb.co/bWVvmS/snack.png "gnet")
 
 -----------------------
 This document has inspired by truffle README.md
 
-Nova is a node.js app which already is under development, aiming to facilitate working with Gallactic.
+gnet is a node.js app which already is under development, aiming to facilitate working with Gallactic.
 
-### with nova you will have these facilities:
+### with gnet you will have these facilities:
 
 * Easily install and uninstall Gallactic.
 * Built-in smart contract compilation, linking, deployment.
@@ -17,7 +17,7 @@ Nova is a node.js app which already is under development, aiming to facilitate w
 ### Install
 
 ```
-$ npm install -g nova
+$ npm install -g gnet
 ```
 
 ### Quick Usage
@@ -25,7 +25,7 @@ $ npm install -g nova
 ```
 Send transaction
 
-$ nova send <priv_key> <address> <fee> 
+$ gnet send <priv_key> <address> <fee> 
 
 ```
 
@@ -34,22 +34,22 @@ For a default set of contracts and tests, run the following within an empty proj
 ```
 Initialize project:
 
-$ nova init
+$ gnet init
 ```
 
-From there, you can run `nova compile`, `nova migrate` and `nova test`(will be implemented in future) to compile your contracts, deploy those contracts to the network, and run their associated unit tests.
+From there, you can run `gnet compile`, `gnet migrate` and `gnet test`(will be implemented in future) to compile your contracts, deploy those contracts to the network, and run their associated unit tests.
 
 ```
 Compile smart contracts:
 
-$ nova compile
+$ gnet compile
 
 it will compile all the contracts which are already inside the contract folder and makes the Bytecodes and ABIs and put them in the build directory.
 ```
 ```
 Deploy smart contracts:
 
-$ nova migrate [accountname]
+$ gnet migrate [accountname]
 
 [accountname] is optional, if you do not want to use default account you can save your account in a standard account json file in the accounts folder and name it 'account.json'.
 
@@ -59,7 +59,7 @@ Be sure you launch the Gallactic and put all contracts on the contract folder be
 ```
 Call smart contract's functions:
 
-$ nova call <contract_name> <function_name> <parameters_list>
+$ gnet call <contract_name> <function_name> <parameters_list>
 
 The parameters are pretty clear the only thing you need to care is parameters_list, its formar must be like this:   var1,var2,...,varK (comma separated)
 
@@ -148,7 +148,7 @@ The parameters are pretty clear the only thing you need to care is parameters_li
     
     
     config|conf                                                  
-    Get the current config of the nova  
+    Get the current config of the gnet  
     If you haven't created any project Gallactic url will be http://127.0.0.1:1337/rpc by default  
     You may need to initialize a project before using this command.
 ```
@@ -185,14 +185,14 @@ contract Calculator {
 
 ```
 ```
-ahmad@blockchain:~/projects/calculator$ nova compile
+ahmad@blockchain:~/projects/calculator$ gnet compile
 
 [ '/home/ahmad/projects/calculator/contracts/Calculator.sol' ]
 Compiling ./contracts/Calculator.sol...
 Compile finished successfully!!!
 Artifacts have been created successfully!!!
 
-ahmad@blockchain:~/projects/calculator$ nova migrate
+ahmad@blockchain:~/projects/calculator$ gnet migrate
 
 1)Calculator  :  
 
@@ -209,7 +209,7 @@ Address : 28F6FCF5278157FF68476E9E165B6FDA406A4E10
 
 Calculator has been successfully deployed! 
 
-ahmad@blockchain:~/projects/calculator$ nova call Calculator Mul 12,10
+ahmad@blockchain:~/projects/calculator$ gnet call Calculator Mul 12,10
 "120"
 
 ```
