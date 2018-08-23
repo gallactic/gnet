@@ -1,4 +1,4 @@
-![gnet](https://image.ibb.co/jDrU0z/gnet.png "gnet")
+![gnet](https://image.ibb.co/m5Y6DK/gnet1.png "gnet")
 
 -----------------------
 This document has inspired by truffle README.md
