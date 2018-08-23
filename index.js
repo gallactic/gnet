@@ -22,7 +22,7 @@ catch(ex){
 var actions = new Actions(config);
 
   program
-  .version('0.0.2')
+  .version('0.0.3')
   .description('gnet');
 
   program
