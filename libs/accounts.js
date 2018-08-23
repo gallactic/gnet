@@ -1,5 +1,5 @@
 
-var gallacticDbFactory = require('burrow-db');
+var gallacticDbFactory = require('gnet-db');
 var fs              = require('fs');
 var path            = require('path'); 
 var schema          = require('./schema').Schema;

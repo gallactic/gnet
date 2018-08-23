@@ -1,5 +1,5 @@
 {
 	"config_name":"config.json",
-	"burrow_url":"http://167.99.28.239:1337/rpc",
+	"gallactic_url":"http://167.99.28.239:1337/rpc",
 	"gallactic_path":"$HOME/gallactic"
 }

@@ -1,6 +1,6 @@
 'use strict'
 
-var burrowDbFactory = require('burrow-db');
+var gallacticDbFactory = require('gnet-db');
 var Promise         = require('promise');
 var blockChain;
 
@@ -8,8 +8,8 @@ module.exports = class Blockchain{
 
     constructor(connectionUrl){
         
-        let burrow = burrowDbFactory.createInstance(connectionUrl);
-        blockChain = burrow.blockchain();
+        let gallactic = gallacticDbFactory.createInstance(connectionUrl);
+        blockChain = gallactic.blockchain();
     }
 
     getGenesisHash(){

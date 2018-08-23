@@ -12,7 +12,7 @@ module.exports = class Action {
         if(config == undefined){
             this._Config = {
                 config_name:"config.json",
-                gallactic_url:"http://localhost:1337/rpc",
+                gallactic_url:"http://167.99.28.239:1337/rpc",
                 gallactic_path:"$HOME/gallactic"
             }
         }
