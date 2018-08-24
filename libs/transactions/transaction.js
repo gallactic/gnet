@@ -1,7 +1,7 @@
 'use strict'
 
 
-var gallacticDbFactory = require('burrow-db');
+var gallacticDbFactory = require('gnet-db');
 
 module.exports = class Transaction {
 
