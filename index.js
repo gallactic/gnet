@@ -213,7 +213,7 @@ var actions = new Actions(config);
   program
   .command('config')
   .alias('conf')
-  .description("\nGet the current config of the snak\
+  .description("\nGet the current config of the gnet\
   \nIf you haven't created any project gallactic url will be http://127.0.0.1:1337/rpc by default\
   \nYou may need to initialize a project before using this command.\n\n")
   .action(() => actions.getConfig());
