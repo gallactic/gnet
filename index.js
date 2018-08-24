@@ -21,7 +21,7 @@ catch(ex){
 
 var actions = new Actions(config);
   program
-  .version('0.0.4')
+  .version('0.0.5')
   .description('gnet');
 
   program
@@ -151,7 +151,7 @@ var actions = new Actions(config);
   .command('*')
   .action(function(others){
     console.log('[Error] There isn\'t any command for "%s" \n\
-    please type snack -h for more helps.\n', others);  
+    please type gnet -h for more helps.\n', others);  
   });
 
   program
