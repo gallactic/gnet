@@ -1,0 +1,294 @@
+ValidatorAddress = "6AE5EF855FE4F3771D1B6D6B73E21065ED7670EC"
+
+[GenesisDoc]
+  GenesisTime = 2018-07-02T09:08:29Z
+  ChainName = "Finterra-testnet"
+  [GenesisDoc.GlobalPermissions]
+    Roles = []
+    [GenesisDoc.GlobalPermissions.Base]
+      Perms = 2302
+      SetBit = 16383
+      
+[[GenesisDoc.Accounts]]
+  Address = "676CBB6F0C71031D0DD7C6A7FC4D838222ED83F2"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"C2FA33D13F3017986D39C1E660467AE3647E9F2C7F3CDD9FD956190963F27CBC\"}"
+  Amount = 9999999999
+  Name = "Full_0"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 16383
+      SetBit = 16383
+      
+[[GenesisDoc.Accounts]]
+  Address = "997D223A5CED2A0155566C9DFC48564A6D619C87"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"355F27643827A5846EFB005FCFDF4AABB9F030A4798A557EE3D8F97499CD618F\"}"
+  Amount = 9999999999
+  Name = "Participant_0"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "F3FBB8C4F09CF5F60A3F50F5D30519C60678FA51"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"365DED2CD098C091BFF9C4D6226B12C6CECEC11C2C4706D38459A072EF89CC5C\"}"
+  Amount = 9999999999
+  Name = "Participant_1"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "624FF17C3C645CFAF4303CE2A46EDFC6CEED5EFE"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"EA2EDF7314E7C77416A8FB49AE2035987201880DCFAE322F217BA2E329A440A3\"}"
+  Amount = 9999999999
+  Name = "Participant_2"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "3EA699776522F42AF7A614FF8DD31B1ABF8999F3"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"7AFD13EF4D7290D02DFA8D88371E791D2D5C933D98C2D9F15374BD5A59B45F2B\"}"
+  Amount = 9999999999
+  Name = "Participant_3"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "F0E166DB4F3A4AC547888CE043B21B5F14BBFD48"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"DC9E78817FFFF773259179889542349BC0CCE3634D874BA7A215E67BFFA14B8C\"}"
+  Amount = 9999999999
+  Name = "Participant_4"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "77E24A77C015B5F99DC7A44A87DF021B48B02D6B"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"FC024EB38E8D40309A50D12F53180AB5C7138FB9C6011AEF37A609A3DB074B9C\"}"
+  Amount = 9999999999
+  Name = "Participant_5"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "87FACA9C2A9DAA718A67421502F614BB44A6F520"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"E8D346C8C5F042C24151638CB3BA54ECD32EF28DAC71AABF8EDA1819BCFBFA5A\"}"
+  Amount = 9999999999
+  Name = "Participant_6"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "4B1207BBB80CDE31C155CB3C5EABE9DBC3E0EAC2"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"657D70B4FD810412BBE347E202F63F97ABD57CCC5F728DB573FC035F6597C151\"}"
+  Amount = 9999999999
+  Name = "Participant_7"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "1CB5CF010E407AFC6249627BFD769D82D8DBBF71"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"FA02D0E6B1CBB0FB6651885806FF2A92DE34F7FA306FDBC9D7725C26E4B1237B\"}"
+  Amount = 9999999999
+  Name = "Participant_8"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "95AF87B1016850043D879C85F3263C83214F3544"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"21E5C194234B30E0C8E6B2A6277D492B45C32B6C41D78D8ADD1C4A22493D2909\"}"
+  Amount = 9999999999
+  Name = "Participant_9"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "EE33BF343AC963BDF67E9A451AF4510FF541D1EE"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"4A984488D19BC0039FB5D195BDA8149AD14EAF7EBF67B18E93A7C0F1BE197707\"}"
+  Amount = 9999999999
+  Name = "Participant_10"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "DA9BD94A350C14D7400CD9D9B7D0556C625511BB"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"1E635AB44575478B5CCAD1D70824E33BCF9B6FD64D2C8BBE369DB7F1C5F97791\"}"
+  Amount = 9999999999
+  Name = "Participant_11"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "EA16E3A730EF5B916B2187BADEE44783E58F5763"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"55830CFD26D2FD13D744F00AAB6F772A2559C5CDC1E006397C14F84B51C2A1E8\"}"
+  Amount = 9999999999
+  Name = "Participant_12"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "C429CE757AD1A3B87B3662F83411EE5786BC5C7C"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"C19B5296F3F4BDEA7E91E0C1481401921F60CDF9235670504716E6709036239E\"}"
+  Amount = 9999999999
+  Name = "Participant_13"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "E2BA1221889FDC47DD8A1F6B9F1BFA5C6F87326F"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"AFFC028F3D7951DE76047A37F7E93161AFDE3C344EFD6455EAE1D5CB6725C591\"}"
+  Amount = 9999999999
+  Name = "Participant_14"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "C4BA41501B0CAC3996BE7407D5E722A096705475"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"06C67C392C731237AA8B98C702ED3F3704FACAE6E6959B668F8187E75D3DF0D7\"}"
+  Amount = 9999999999
+  Name = "Participant_15"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "F8496558F1672952B28A1A1384EC293870BD08D3"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"E86E7C0B2503EA658C80287F396CCEA5485A29F3741D1A72308BE54D294C6ADF\"}"
+  Amount = 9999999999
+  Name = "Participant_16"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "C49640F0ED5DF8259C72F8DCCEDF9179D5830611"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"9F59E937015EEAF7B527CD3B522EE837C496DDDF3550BE22CE0AC49374B5B2AE\"}"
+  Amount = 9999999999
+  Name = "Participant_17"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "66336D11AA8F74E4C88CDD04F0F2C761B7E53408"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"F99BBEE9EB7FCDA3748007EC95BDFCF505D674BAD306390AA9084A776A2AA380\"}"
+  Amount = 9999999999
+  Name = "Participant_18"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "7E95E272A32C7D1A236DC0F044DD62F08504C42C"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"E2E83F6B9F0AC3C750C52A5C83E3A0F5263D7208DC23887FF5AA0FB0AEC17DE7\"}"
+  Amount = 9999999999
+  Name = "Participant_19"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "406894F316F95DC83BFD2F6418BE0CC31C3163A0"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"2D47D0F43B27C57815E3317624742468D929544DF142ABA49AFFD9E00C8B1FCF\"}"
+  Amount = 9999999999
+  Name = "Participant_20"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "57C3BC3FBA38BE582154D154625E8E469D7E3CA2"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"83947B39E512265E6BE034FD33E105C438685360C9868C11C5D2C54A8820CCAC\"}"
+  Amount = 9999999999
+  Name = "Participant_21"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Accounts]]
+  Address = "0A0AD74BB014783E0FD139738B660D3AC8A5B7AE"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"F8D3133A55BA2B245B328D9EF4881B5CF2AFF2DC342EB8F51C4F98799E870683\"}"
+  Amount = 9999999999
+  Name = "Participant_22"
+  [GenesisDoc.Accounts.Permissions]
+    [GenesisDoc.Accounts.Permissions.Base]
+      Perms = 2118
+      SetBit = 2118
+      
+[[GenesisDoc.Validators]]
+  Address = "6AE5EF855FE4F3771D1B6D6B73E21065ED7670EC"
+  PublicKey = "{\"type\":\"ed25519\",\"data\":\"1474C7654BD711B910F48561FCEC85BC5FAE01B1D209CDF6B60D10F141EC7D5B\"}"
+  Stake = 9999999
+  Name = "Validator_0"
+    
+[Tendermint]
+  ListenAddress = "tcp://0.0.0.0:46656"
+  TendermintRoot = ".burrow"
+
+[Keys]
+  URL = "http://localhost:4767"
+  
+[RPC]
+  [RPC.V0]
+    [RPC.V0.Server]
+      ChainId = ""
+      [RPC.V0.Server.bind]
+        address = "localhost"
+        port = 1337
+      [RPC.V0.Server.TLS]
+        tls = false
+        cert_path = ""
+        key_path = ""
+      [RPC.V0.Server.CORS]
+        enable = false
+        allow_credentials = false
+        max_age = 0
+      [RPC.V0.Server.HTTP]
+        json_rpc_endpoint = "/rpc"
+      [RPC.V0.Server.web_socket]
+        websocket_endpoint = "/socketrpc"
+        max_websocket_sessions = 50
+        read_buffer_size = 4096
+        write_buffer_size = 4096
+  [RPC.TM]
+    ListenAddress = "tcp://0.0.0.0:46657"
+    
+[Logging]
+  [Logging.RootSink]
+    [Logging.RootSink.Output]
+      OutputType = "stderr"
+      Format = ""

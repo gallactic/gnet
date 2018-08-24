@@ -420,7 +420,7 @@ module.exports = class Action {
         });
     }
 
-    broadcastCall(privKey,address,gasLimit,fee,data){                
+    broadcastCall(privKey,data,address,gasLimit,fee){                
         return this._callTxHandler().broadcast(privKey,address,gasLimit,fee,data).then(data =>{
             logger.console("Safe Transact Tx result :\n" + JSON.stringify(data,null,4));
         }).catch(ex => {
@@ -454,6 +454,128 @@ module.exports = class Action {
                     console.log(data.height + ") \n" + JSON.stringify(txs,null,4));
                 });
             });
+        }
+    }
+
+    installGallactic(){
+
+        let gallactic_files = "";        
+
+        if(os.type() == "Linux")
+            gallactic_files = '/gallactic/gallactic-linux';
+        else if (os.type() == "Darwin")
+            gallactic_files = '/gallactic/gallactic-darwin';              
+        else{
+            logger.console("snak does not support your OS type: " + os.type());
+            return;
+        }
+        try{
+            let shell = require('shelljs');
+            let cmd = __dirname + '/gallactic/install.sh ' + __dirname + gallactic_files;
+            let child = shell.exec(cmd, {async:true});
+            child.stdout.on('data', function(data) {
+            });
+            
+        }
+        catch(ex){
+            logger.error(ex);       
+        }
+    }
+
+    uninstallGallactic(){
+        try{
+            let shell = require('shelljs');
+            let cmd = __dirname + '/gallactic/uninstall.sh';
+            let child = shell.exec(cmd, {async:true});
+            child.stdout.on('data', function(data) {
+            });
+            
+        }
+        catch(ex){
+            logger.error(ex);       
+        }
+    }
+
+    rungKeys(ip_address){
+
+        let gallactic_files = "";        
+
+        if(os.type() == "Linux")
+            gallactic_files = '/gallactic/gallactic-linux';
+        else if (os.type() == "Darwin")
+            gallactic_files = '/gallactic/gallactic-darwin';              
+        else{
+            logger.console("snak does not support your OS type: " + os.type());
+            return;
+        }
+        try{
+            let shell = require('shelljs');
+            let cmd = "";
+            if(ip_address == "")
+                cmd = __dirname + gallactic_files + '/gKeys server &';
+            else 
+                cmd = __dirname + gallactic_files + '/gKeys --host ' + ip_address + ' server &';   
+
+            let child = shell.exec(cmd, {async:true});
+            child.stdout.on('data', function(data) {
+            });            
+        }
+        catch(ex){
+            logger.error(ex);       
+        }
+    }
+
+    run(){
+        try{
+            let shell = require('shelljs');
+            let cmd = __dirname + '/gallactic/gallactic.sh';
+            let child = shell.exec(cmd, {async:true});
+            child.stdout.on('data', function(data) {
+            });            
+            
+        }
+        catch(ex){
+            logger.error(ex);       
+        }
+    }
+
+    importKeys(file_name){
+
+        let gallactic_files = "";        
+
+        if(os.type() == "Linux")
+            gallactic_files = '/gallactic/gallactic-linux';
+        else if (os.type() == "Darwin")
+            gallactic_files = '/gallactic/gallactic-darwin';              
+        else{
+            logger.error("snak does not support your OS type: " + os.type());
+            return;
+        }
+
+        if(file_name=="" || file_name == null){
+            file_name = __dirname + gallactic_files + "/account_list.json"
+        }
+        let fs = require('fs');
+        if (fs.existsSync(file_name)) {
+            let keys = JSON.parse(fs.readFileSync(file_name,'utf-8'));
+            keys.forEach(element => {
+                
+                try{
+                    let shell = require('shelljs');
+                    let cmd = __dirname + gallactic_files + '/gKeys import ' + element.privKey + ' --no-pass' ;
+                    let child = shell.exec(cmd, {async:true});
+                    child.
+                    stdout.on('data', function(data) {
+                        
+                    });            
+                }
+                catch(ex){
+                    logger.error(ex);       
+                }
+            });
+        }
+        else{
+            logger.error("Couldn't find the file " + file_name);
         }
     }
 };

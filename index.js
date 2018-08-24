@@ -20,10 +20,44 @@ catch(ex){
 }
 
 var actions = new Actions(config);
+  program
+  .version('0.0.4')
+  .description('gnet');
 
   program
-  .version('0.0.3')
-  .description('gnet');
+  .command('install')
+  .alias('insl')
+  .description('\ninstall gallactic blockchain, and copy the files to the home directory (.gallactic), \
+  \nNo need to initialize project for this command.\n\n')
+  .action(() => actions.installGallactic());
+
+  program
+  .command('uninstall')
+  .alias('unsl')
+  .description('\nuninstall gallactic blockchain, and back up the files to the home directory (gallactic-backup), \
+  \nNo need to initialize project for this command.\n\n')
+  .action(() => actions.uninstallGallactic());
+
+  program
+  .command('run')
+  .alias('rn')
+  .description('\nrun gallactic blockchain,you need install gallactic first!, \
+  \nNo need to initialize project for this command.\n\n')
+  .action(() => actions.run());
+
+  program
+  .command('gKeys [ip_address]')
+  .alias('rks')
+  .description("\nRuns the gallactic key server on port 4776, \
+  \nNo need to initialize a project before using this command.\n\n")
+  .action((ip_address) => actions.rungKeys(ip_address));
+
+  program
+  .command('import_keys [file_name]')
+  .alias('imks')
+  .description("\nImport keys in the gallactic key server\
+  \nNo need to initialize a project before using this command.\n\n")
+  .action((file_name) => actions.importKeys(file_name));
 
   program
   .command('init')
@@ -183,6 +217,7 @@ var actions = new Actions(config);
   \nIf you haven't created any project gallactic url will be http://127.0.0.1:1337/rpc by default\
   \nYou may need to initialize a project before using this command.\n\n")
   .action(() => actions.getConfig());
+
 
 
 program.parse(process.argv);

@@ -1,6 +1,6 @@
 {
   "name": "gnet",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Tooling for interacting with Gallactic blockchain node",
   "main": "index.js",
   "author": "Ahmad Pouladzadeh <pouladzade@gmail.com>",
