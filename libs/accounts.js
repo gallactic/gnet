@@ -1,5 +1,5 @@
 
-var gallacticDbFactory = require('gnet-db');
+var Intergallactic = require('intergallactic');
 var fs              = require('fs');
 var path            = require('path'); 
 var schema          = require('./schema').Schema;
@@ -9,21 +9,18 @@ var accounts        = null;
 module.exports = class Accounts {
 
     constructor(connectionUrl){
-        var gallactic = gallacticDbFactory.createInstance(connectionUrl);
-        accounts = gallactic.accounts();
+        var intergallactic = new Intergallactic({ url: connectionUrl, protocol: 'jsonrpc' });
+        accounts = intergallactic.account;
     }
     
     loadAccounts(){
-        return new Promise(function (resolve, reject) {
-            accounts.getAccounts((error,data)=>{
-                if(data){                                               
-                    resolve(data);
-                }    
-                else{
-                    reject(error);   
-                } 
+        return accounts.listAccounts()
+            .then(data => {
+                return data;
             })
-        });        
+            .catch(err => {
+                console.log(err)
+            })
     }
     
     createAccount(pass_phrase){    
@@ -64,20 +61,7 @@ module.exports = class Accounts {
             })
         }); 
     }
-
-    getBalance(address){        
-        return new Promise(function (resolve, reject) {
-            accounts.getAccount(address,(error,data)=>{
-                if(data){                                               
-                    resolve(data.Account.Balance);
-                }    
-                else{
-                    reject(error);   
-                } 
-            })
-        });
-    }
-    
+        
     getPermissions(address){        
         return new Promise(function (resolve, reject) {
             accounts.getAccount(address,(error,data)=>{
@@ -136,6 +120,3 @@ module.exports = class Accounts {
     }
 
 }
-
-
-

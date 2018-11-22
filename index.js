@@ -46,20 +46,6 @@ var actions = new Actions(config);
   .action(() => actions.run());
 
   program
-  .command('gKeys [ip_address]')
-  .alias('rks')
-  .description("\nRuns the gallactic key server on port 4776, \
-  \nNo need to initialize a project before using this command.\n\n")
-  .action((ip_address) => actions.rungKeys(ip_address));
-
-  program
-  .command('import_keys [file_name]')
-  .alias('imks')
-  .description("\nImport keys in the gallactic key server\
-  \nNo need to initialize a project before using this command.\n\n")
-  .action((file_name) => actions.importKeys(file_name));
-
-  program
   .command('init')
   .alias('int')
   .description('\nInitialize project, makes folders and files which are needed for starting a dapp project.\n\n')
