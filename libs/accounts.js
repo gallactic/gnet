@@ -1,5 +1,5 @@
 
-var Intergallactic = require('intergallactic');
+var Intergallactic  = require('intergallactic');
 var fs              = require('fs');
 var path            = require('path'); 
 var schema          = require('./schema').Schema;
@@ -19,7 +19,7 @@ module.exports = class Accounts {
                 return data;
             })
             .catch(err => {
-                console.log(err)
+                throw(err)
             })
     }
     
@@ -37,29 +37,29 @@ module.exports = class Accounts {
     }
     
     getBalance(address){    
-        return new Promise(function (resolve, reject) {
-            accounts.getAccount(address,(error,data)=>{
-                if(data){                                               
-                    resolve(data.Account.Balance);
-                }    
-                else{
-                    reject(error);   
-                } 
+        return accounts.getAccount(address)
+            .then(data => {
+                var result; 
+                var response = data.body.result;
+                response == null ? result = 0 : result = response.Account.balance;
+                return result;
             })
-        }); 
+            .catch(err => {
+                throw(err);
+            });
     }
 
     getSequence(address){    
-        return new Promise(function (resolve, reject) {
-            accounts.getAccount(address,(error,data)=>{
-                if(data){                                               
-                    resolve(data.Account.Sequence);
-                }    
-                else{
-                    reject(error);   
-                } 
+        return accounts.getAccount(address)
+            .then(data => {
+                var result; 
+                var response = data.body.result;
+                response == null ? result = 0 : result = response.Account.sequence;
+                return result;
             })
-        }); 
+            .catch(err => {
+                throw(err);
+            }); 
     }
         
     getPermissions(address){        

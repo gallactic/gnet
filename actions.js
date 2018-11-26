@@ -263,7 +263,8 @@ module.exports = class Action {
     loadAccounts(){
         this._accountHandler().loadAccounts()
         .then(accounts => {
-            logger.console("accounts :\n" + JSON.stringify(accounts.body.result.Accounts,null,4));
+            var accounts = accounts.body.result.Accounts;
+            logger.console("accounts :\n" + JSON.stringify(accounts,null,4));
         })
         .catch(ex => {
             logger.error(ex);
@@ -290,8 +291,7 @@ module.exports = class Action {
         });
     }
 
-    getBalance(address,cmd){
-        console.log(cmd);
+    getBalance(address){
         this._accountHandler().getBalance( address)
         .then(balance => {
             logger.console("Balance : " + balance);
