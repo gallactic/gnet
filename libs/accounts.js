@@ -9,7 +9,7 @@ var accounts        = null;
 module.exports = class Accounts {
 
     constructor(connectionUrl){
-        var intergallactic = new Intergallactic({ url: connectionUrl, protocol: 'jsonrpc' });
+        let intergallactic = new Intergallactic({ url: connectionUrl, protocol: 'jsonrpc' });
         accounts = intergallactic.account;
     }
     

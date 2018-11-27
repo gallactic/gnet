@@ -1,55 +1,46 @@
 'use strict'
 
-var gallacticDbFactory = require('gnet-db');
+var Intergallactic  = require('intergallactic');
 var Promise         = require('promise');
 var blockChain;
 
 module.exports = class Blockchain{
 
     constructor(connectionUrl){
-        
-        let gallactic = gallacticDbFactory.createInstance(connectionUrl);
-        blockChain = gallactic.blockchain();
+        let intergallactic = new Intergallactic({ url: connectionUrl, protocol: 'jsonrpc' });
+        blockChain = intergallactic.gltc;
     }
 
     getGenesisHash(){
         
-        return new Promise(function (resolve, reject) {
-            blockChain.getChainId((error,data)=>{
-                if(data){                                               
-                    resolve(data.GenesisHash);
-                }    
-                else{
-                    reject(error);   
-                } 
+        return blockChain.getChainId()
+            .then(data => {
+                return data;
             })
-        });
+            .catch(err => {
+                throw(err)
+            })
     }
 
     getChainId(){        
-        return new Promise(function (resolve, reject) {
-            blockChain.getChainId((error,data)=>{
-                if(data){                                               
-                    resolve(data.ChainId);
-                }    
-                else{
-                    reject(error);   
-                } 
+
+        return blockChain.getChainId()
+            .then(data => {
+                return data;
             })
-        });
+            .catch(err => {
+                throw(err)
+            })
     }
         
     getInfo(){                
-        return new Promise(function (resolve, reject) {
-            blockChain.getInfo((error,data)=>{
-                if(data){                                               
-                    resolve(data);
-                }    
-                else{
-                    reject(error);   
-                } 
+        return blockChain.getInfo()
+            .then(data => {
+                return data;
             })
-        });
+            .catch(err => {
+                throw(err)
+            })
     }
     
     getLatestBlockHeight(){        

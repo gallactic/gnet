@@ -343,7 +343,7 @@ module.exports = class Action {
     getGenesisHash(){
         return this._blockchainHandler().getGenesisHash()
         .then(genesisHash => {
-            logger.console("Genesis Hash :\n" + genesisHash);
+            logger.console("Genesis Hash :\n" + JSON.stringify(genesisHash.body.result.GenesisHash,null,4));
         })
         .catch(ex => {
             logger.error(ex);
