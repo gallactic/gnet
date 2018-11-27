@@ -262,8 +262,7 @@ module.exports = class Action {
 
     loadAccounts(){
         this._accountHandler().loadAccounts()
-        .then(data => {
-            var accounts = data.body.result.Accounts;
+        .then(accounts => {
             logger.console("accounts :\n" + JSON.stringify(accounts,null,4));
         })
         .catch(ex => {
@@ -343,7 +342,7 @@ module.exports = class Action {
     getGenesisHash(){
         return this._blockchainHandler().getGenesisHash()
         .then(genesisHash => {
-            logger.console("Genesis Hash :\n" + JSON.stringify(genesisHash.body.result.GenesisHash,null,4));
+            logger.console("Genesis Hash :\n" + genesisHash);
         })
         .catch(ex => {
             logger.error(ex);
@@ -362,8 +361,8 @@ module.exports = class Action {
 
     getLatestBlock(){
         return this._blockchainHandler().getLatestBlock()
-        .then(data => {
-            logger.console("Latest block :\n" + JSON.stringify(data.body.result.Block,null,4));
+        .then(block => {
+            logger.console("Latest block :\n" + JSON.stringify(block,null,4));
         })
         .catch(ex => {
             logger.error(ex);
@@ -372,8 +371,8 @@ module.exports = class Action {
     
     getLatestBlockHeight(){          
         return this._blockchainHandler().getLatestBlockHeight()
-        .then(data => {
-            logger.console("Latest block height :" + data.body.result.Block.header.height);
+        .then(latestBlockHeight => {
+            logger.console("Ltest block height :" + latestBlockHeight);
         })
         .catch(ex => {
             logger.error(ex);
@@ -382,8 +381,8 @@ module.exports = class Action {
 
     getBlock(height){
         return this._blockchainHandler().getBlock(height)
-        .then(data => {
-            logger.console("block :\n" + JSON.stringify(data.body.result,null,4));
+        .then(block => {
+            logger.console("block :\n" + JSON.stringify(block,null,4));
         })
         .catch(ex => {
             logger.error(ex);
@@ -392,9 +391,9 @@ module.exports = class Action {
 
     getBlockTxs(height){
         return this._blockchainHandler().getBlockTxs(height)
-        .then(data => {
-            logger.console("block :\n" + JSON.stringify(data.body.result,null,4));
-            return data;
+        .then(txs => {
+            logger.console("block :\n" + JSON.stringify(txs,null,4));
+            return txs;
         })
         .catch(ex => {
             logger.error(ex);

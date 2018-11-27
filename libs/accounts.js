@@ -16,7 +16,7 @@ module.exports = class Accounts {
     loadAccounts(){
         return accounts.listAccounts()
             .then(data => {
-                return data;
+                return data.body.result.Accounts;
             })
             .catch(err => {
                 throw(err)

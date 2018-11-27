@@ -15,7 +15,7 @@ module.exports = class Blockchain{
         
         return blockChain.getChainId()
             .then(data => {
-                return data;
+                return data.body.result.GenesisHash;
             })
             .catch(err => {
                 throw(err)
@@ -46,7 +46,7 @@ module.exports = class Blockchain{
     getLatestBlockHeight(){        
         return blockChain.getLatestBlock()
             .then(data => {
-                return data;
+                return data.body.result.Block.header.height;
             })
             .catch(err => {
                 throw(err)
@@ -56,7 +56,7 @@ module.exports = class Blockchain{
     getLatestBlock(){
         return blockChain.getLatestBlock()
             .then(data => {
-                return data;
+                return data.body.result.Block;
             })
             .catch(err => {
                 throw(err)
@@ -66,7 +66,7 @@ module.exports = class Blockchain{
     getBlock(height){        
         return blockChain.getBlock(height)
             .then(data => {
-                return data;
+                return data.body.result;
             })
             .catch(err => {
                 throw(err)
@@ -76,7 +76,7 @@ module.exports = class Blockchain{
     getBlockTxs(height){        
         return blockChain.getBlockTxns(height)
             .then(data => {
-                return data;
+                return data.body.result;
             })
             .catch(err => {
                 throw(err)
