@@ -44,56 +44,43 @@ module.exports = class Blockchain{
     }
     
     getLatestBlockHeight(){        
-        return new Promise(function (resolve, reject) {
-            blockChain.getLatestBlock((error,data)=>{
-                if(data){                                               
-                    resolve(data.Block.header.height);
-                }    
-                else{
-                    reject(error);   
-                } 
+        return blockChain.getLatestBlock()
+            .then(data => {
+                return data;
             })
-        });
+            .catch(err => {
+                throw(err)
+            })
     }
     
     getLatestBlock(){
-        return new Promise(function (resolve, reject) {
-            blockChain.getLatestBlock((error,data)=>{
-                if(data){                                               
-                    resolve(data);
-                }    
-                else{
-                    reject(error);   
-                } 
+        return blockChain.getLatestBlock()
+            .then(data => {
+                return data;
             })
-        });
-        
+            .catch(err => {
+                throw(err)
+            })
     }
 
     getBlock(height){        
-        return new Promise(function (resolve, reject) {
-            blockChain.getBlock(height,(error,data)=>{
-                if(data){                                               
-                    resolve(data);
-                }    
-                else{
-                    reject(error);   
-                } 
+        return blockChain.getBlock(height)
+            .then(data => {
+                return data;
             })
-        });
+            .catch(err => {
+                throw(err)
+            })
     }
 
     getBlockTxs(height){        
-        return new Promise(function (resolve, reject) {
-            blockChain.getBlockTransactions(height,(error,data)=>{
-                if(data){                                               
-                    resolve(data);
-                }    
-                else{
-                    reject(error);   
-                } 
+        return blockChain.getBlockTxns(height)
+            .then(data => {
+                return data;
             })
-        });
+            .catch(err => {
+                throw(err)
+            })
     }
 
     getBlockTxsNo(height){        
