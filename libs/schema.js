@@ -4,7 +4,7 @@ var Schema = {
 
     project_path : process.cwd(),
 
-    snack_path : __dirname,
+    gnet_path : __dirname,
 
     test : "/test",
 

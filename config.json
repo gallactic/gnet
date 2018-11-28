@@ -1,0 +1,5 @@
+{
+	"config_name":"config.json",
+	"gallactic_url":"http://127.0.0.1:1337/rpc",
+	"gallactic_path":"$HOME/gallactic"
+}

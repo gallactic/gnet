@@ -46,20 +46,6 @@ var actions = new Actions(config);
   .action(() => actions.run());
 
   program
-  .command('gKeys [ip_address]')
-  .alias('rks')
-  .description("\nRuns the gallactic key server on port 4776, \
-  \nNo need to initialize a project before using this command.\n\n")
-  .action((ip_address) => actions.rungKeys(ip_address));
-
-  program
-  .command('import_keys [file_name]')
-  .alias('imks')
-  .description("\nImport keys in the gallactic key server\
-  \nNo need to initialize a project before using this command.\n\n")
-  .action((file_name) => actions.importKeys(file_name));
-
-  program
   .command('init')
   .alias('int')
   .description('\nInitialize project, makes folders and files which are needed for starting a dapp project.\n\n')
@@ -73,7 +59,7 @@ var actions = new Actions(config);
   .action(() => actions.compileAll());
 
   program
-  .command('migrate [accountname] ')
+  .command('migrate [accountname]')
   .option('-f, --force', 'forcely migrate the contracts')
   .alias('mgt')
   .description('\ndeploy contract on the Gallactic\
@@ -81,14 +67,14 @@ var actions = new Actions(config);
   .action((accountname,cmd) => actions.migrate(accountname,cmd.force));
 
   program
-  .command('list_accounts ')
+  .command('list_accounts')
   .alias('lacnt')
   .description('\nLoad all accounts\
   \nyou need to initialize a project before using this command.\n\n')
   .action(() => actions.loadAccounts());
 
   program
-  .command('default_accounts ')
+  .command('default_accounts')
   .alias('dacnt')
   .description('\nList all predefined accounts\
   \nNo need to initialize a project before using this command.\n\n')
@@ -110,7 +96,7 @@ var actions = new Actions(config);
 
   program
   .command('sequence <address>')
-  .alias('blnc')
+  .alias('seq')
   .description("\nGet sequence of a specefic account\
   \nNo need to initialize a project before using this command.\n\n")
   .action((address) => actions.getSequence(address));
@@ -143,7 +129,7 @@ var actions = new Actions(config);
   .command('send <priv_key> <address> <amount> ')
   .option('-u, --unsafe', 'unsafe sending transaction')
   .alias('snd')
-  .description('\n(safe) Do regular transaction, you need pass the private key of sender and address of reciever\
+  .description('\n(safe) Do regular transaction, you need to pass the private key of sender and address of reciever\
   \nyou need to initialize a project before using this command.\n\n')
   .action((priv_key,address,amount,cmd) => actions.send(priv_key,address,parseInt(amount),cmd.unsafe));
 

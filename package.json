@@ -8,9 +8,10 @@
   "preferGlobal": true,
   "bin": "./index.js",
   "dependencies": {
+    "commander": "^2.9.0",
     "gnet-contracts": "0.0.1",
     "gnet-db": "0.0.1",
-    "commander": "^2.9.0",
+    "intergallactic": "0.0.1",
     "md5": "2.2.1",
     "promise": "8.0.1",
     "shelljs": "0.8.1",

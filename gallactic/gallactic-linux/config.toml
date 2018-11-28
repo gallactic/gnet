@@ -1,0 +1,35 @@
+[tendermint]
+  seeds = ""
+  persistentPeers = ""
+  listenAddress = "tcp://0.0.0.0:46656"
+  moniker = ""
+  tendermintRoot = "./data"
+
+[rpc]
+  Enabled = true
+  [rpc.Server]
+    [rpc.Server.bind]
+      address = "0.0.0.0"
+      port = 1337
+    [rpc.Server.TLS]
+      tls = false
+      cert_path = ""
+      key_path = ""
+    [rpc.Server.CORS]
+      enable = false
+      allow_credentials = false
+      max_age = 0
+    [rpc.Server.HTTP]
+      json_rpc_endpoint = "/rpc"
+
+[grpc]
+  Enabled = true
+  ListenAddress = "127.0.0.1:50051"
+
+[logging]
+  ExcludeTrace = false
+  NonBlocking = false
+  [logging.RootSink]
+    [logging.RootSink.Output]
+      OutputType = "stderr"
+      Format = "json"
