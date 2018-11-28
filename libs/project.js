@@ -17,15 +17,15 @@ module.exports = class Project {
                     reject(error);
             }
             try{
-                fs.copyFileSync(Schema.snack_path +Schema.template + Schema.config_file, Schema.project_path + Schema.config_file);
+                fs.copyFileSync(Schema.gnet_path +Schema.template + Schema.config_file, Schema.project_path + Schema.config_file);
                 fs.mkdirSync(Schema.project_path + Schema.build);
                 fs.mkdirSync(Schema.project_path + Schema.contracts);
                 fs.mkdirSync(Schema.project_path + Schema.migration);
                 fs.mkdirSync(Schema.project_path + Schema.test);
                 fs.mkdirSync(Schema.project_path + Schema.accounts);
                 fs.mkdirSync(Schema.project_path + Schema.transactions);
-                fs.copyFileSync(Schema.snack_path +Schema.template + Schema.account_list, Schema.project_path + Schema.accounts + Schema.account_list);
-                fs.copyFileSync(Schema.snack_path +Schema.template + Schema.default_account, Schema.project_path + Schema.accounts + Schema.default_account);
+                fs.copyFileSync(Schema.gnet_path +Schema.template + Schema.account_list, Schema.project_path + Schema.accounts + Schema.account_list);
+                fs.copyFileSync(Schema.gnet_path +Schema.template + Schema.default_account, Schema.project_path + Schema.accounts + Schema.default_account);
 
                 fulfil();
             }

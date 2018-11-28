@@ -20,10 +20,30 @@ catch(ex){
 }
 
 var actions = new Actions(config);
+  program
+  .version('0.0.5')
+  .description('gnet');
 
   program
-  .version('0.0.1')
-  .description('gnet');
+  .command('install')
+  .alias('insl')
+  .description('\ninstall gallactic blockchain, and copy the files to the home directory (.gallactic), \
+  \nNo need to initialize project for this command.\n\n')
+  .action(() => actions.installGallactic());
+
+  program
+  .command('uninstall')
+  .alias('unsl')
+  .description('\nuninstall gallactic blockchain, and back up the files to the home directory (gallactic-backup), \
+  \nNo need to initialize project for this command.\n\n')
+  .action(() => actions.uninstallGallactic());
+
+  program
+  .command('run')
+  .alias('rn')
+  .description('\nrun gallactic blockchain,you need install gallactic first!, \
+  \nNo need to initialize project for this command.\n\n')
+  .action(() => actions.run());
 
   program
   .command('init')
@@ -39,7 +59,7 @@ var actions = new Actions(config);
   .action(() => actions.compileAll());
 
   program
-  .command('migrate [accountname] ')
+  .command('migrate [accountname]')
   .option('-f, --force', 'forcely migrate the contracts')
   .alias('mgt')
   .description('\ndeploy contract on the Gallactic\
@@ -47,14 +67,14 @@ var actions = new Actions(config);
   .action((accountname,cmd) => actions.migrate(accountname,cmd.force));
 
   program
-  .command('list_accounts ')
+  .command('list_accounts')
   .alias('lacnt')
   .description('\nLoad all accounts\
   \nyou need to initialize a project before using this command.\n\n')
   .action(() => actions.loadAccounts());
 
   program
-  .command('default_accounts ')
+  .command('default_accounts')
   .alias('dacnt')
   .description('\nList all predefined accounts\
   \nNo need to initialize a project before using this command.\n\n')
@@ -76,7 +96,7 @@ var actions = new Actions(config);
 
   program
   .command('sequence <address>')
-  .alias('blnc')
+  .alias('seq')
   .description("\nGet sequence of a specefic account\
   \nNo need to initialize a project before using this command.\n\n")
   .action((address) => actions.getSequence(address));
@@ -109,7 +129,7 @@ var actions = new Actions(config);
   .command('send <priv_key> <address> <amount> ')
   .option('-u, --unsafe', 'unsafe sending transaction')
   .alias('snd')
-  .description('\n(safe) Do regular transaction, you need pass the private key of sender and address of reciever\
+  .description('\n(safe) Do regular transaction, you need to pass the private key of sender and address of reciever\
   \nyou need to initialize a project before using this command.\n\n')
   .action((priv_key,address,amount,cmd) => actions.send(priv_key,address,parseInt(amount),cmd.unsafe));
 
@@ -117,7 +137,7 @@ var actions = new Actions(config);
   .command('*')
   .action(function(others){
     console.log('[Error] There isn\'t any command for "%s" \n\
-    please type snack -h for more helps.\n', others);  
+    please type gnet -h for more helps.\n', others);  
   });
 
   program
@@ -179,10 +199,11 @@ var actions = new Actions(config);
   program
   .command('config')
   .alias('conf')
-  .description("\nGet the current config of the snak\
+  .description("\nGet the current config of the gnet\
   \nIf you haven't created any project gallactic url will be http://127.0.0.1:1337/rpc by default\
   \nYou may need to initialize a project before using this command.\n\n")
   .action(() => actions.getConfig());
+
 
 
 program.parse(process.argv);

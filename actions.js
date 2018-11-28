@@ -12,7 +12,7 @@ module.exports = class Action {
         if(config == undefined){
             this._Config = {
                 config_name:"config.json",
-                gallactic_url:"http://localhost:1337/rpc",
+                gallactic_url:"http://127.0.0.1:1337/rpc",
                 gallactic_path:"$HOME/gallactic"
             }
         }
@@ -290,8 +290,7 @@ module.exports = class Action {
         });
     }
 
-    getBalance(address,cmd){
-        console.log(cmd);
+    getBalance(address){
         this._accountHandler().getBalance( address)
         .then(balance => {
             logger.console("Balance : " + balance);
@@ -420,7 +419,7 @@ module.exports = class Action {
         });
     }
 
-    broadcastCall(privKey,address,gasLimit,fee,data){                
+    broadcastCall(privKey,data,address,gasLimit,fee){                
         return this._callTxHandler().broadcast(privKey,address,gasLimit,fee,data).then(data =>{
             logger.console("Safe Transact Tx result :\n" + JSON.stringify(data,null,4));
         }).catch(ex => {
@@ -454,6 +453,59 @@ module.exports = class Action {
                     console.log(data.height + ") \n" + JSON.stringify(txs,null,4));
                 });
             });
+        }
+    }
+
+    installGallactic(){
+
+        let gallactic_files = "";        
+
+        if(os.type() == "Linux")
+            gallactic_files = '/gallactic/gallactic-linux';
+        else if (os.type() == "Darwin")
+            gallactic_files = '/gallactic/gallactic-darwin';              
+        else{
+            logger.console("snak does not support your OS type: " + os.type());
+            return;
+        }
+        try{
+            let shell = require('shelljs');
+            let cmd = __dirname + '/gallactic/install.sh ' + __dirname + gallactic_files;
+            let child = shell.exec(cmd, {async:true});
+            child.stdout.on('data', function(data) {
+            });
+            
+        }
+        catch(ex){
+            logger.error(ex);       
+        }
+    }
+
+    uninstallGallactic(){
+        try{
+            let shell = require('shelljs');
+            let cmd = __dirname + '/gallactic/uninstall.sh';
+            let child = shell.exec(cmd, {async:true});
+            child.stdout.on('data', function(data) {
+            });
+            
+        }
+        catch(ex){
+            logger.error(ex);       
+        }
+    }
+
+    run(){
+        try{
+            let shell = require('shelljs');
+            let cmd = __dirname + '/gallactic/gallactic.sh';
+            let child = shell.exec(cmd, {async:true});
+            child.stdout.on('data', function(data) {
+            });            
+            
+        }
+        catch(ex){
+            logger.error(ex);       
         }
     }
 };

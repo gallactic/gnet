@@ -1,6 +1,6 @@
 {
   "name": "gnet",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "Tooling for interacting with Gallactic blockchain node",
   "main": "index.js",
   "author": "Ahmad Pouladzadeh <pouladzade@gmail.com>",
@@ -8,9 +8,10 @@
   "preferGlobal": true,
   "bin": "./index.js",
   "dependencies": {
-    "burrow-contracts": "0.18.1",
-    "burrow-db": "0.18.1",
-    "commander": "^2.9.0",    
+    "commander": "^2.9.0",
+    "gnet-contracts": "0.0.1",
+    "gnet-db": "0.0.1",
+    "intergallactic": "0.0.1",
     "md5": "2.2.1",
     "promise": "8.0.1",
     "shelljs": "0.8.1",
@@ -24,4 +25,3 @@
     "url": "https://github.com/gallactic/gnet"
   }
 }
- 

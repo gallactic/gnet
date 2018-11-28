@@ -1,6 +1,6 @@
 'use strict'
 
-let contracts   = require('burrow-contracts');
+let contracts   = require('gnet-contracts');
 const schema    = require('./schema').Schema;
 var fs          = require('fs');
 var promise     = require("promise");
