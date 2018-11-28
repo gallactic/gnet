@@ -1,5 +1,4 @@
 
-var Intergallactic  = require('intergallactic');
 var fs              = require('fs');
 var path            = require('path'); 
 var schema          = require('./schema').Schema;
@@ -8,8 +7,7 @@ var accounts        = null;
 
 module.exports = class Accounts {
 
-    constructor(connectionUrl){
-        let intergallactic = new Intergallactic({ url: connectionUrl, protocol: 'jsonrpc' });
+    constructor(intergallactic){
         accounts = intergallactic.account;
     }
     

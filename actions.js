@@ -1,6 +1,6 @@
-
 'use strict'
 
+var Intergallactic  = require('intergallactic');
 var os     = require('os');
 var Logger = require('./libs/logger');
 var logger = new Logger();
@@ -20,6 +20,8 @@ module.exports = class Action {
             this._Config = config;
         }
         
+        this.intergallactic = new Intergallactic({ url: this._Config.gallactic_url, protocol: 'jsonrpc' });
+
         this._blockchain = null;
         this._unsafeTx   = null;
         this._sendTx     = null;
@@ -93,7 +95,7 @@ module.exports = class Action {
         }
         else{
             let Accounts = require("./libs/accounts") ;
-            this._accounts = new Accounts(this._Config.gallactic_url);
+            this._accounts = new Accounts(this.intergallactic);
             return this._accounts;
         }
     } 
@@ -126,7 +128,7 @@ module.exports = class Action {
         }
         else{
             let Blockchain = require("./libs/blockchain");
-            this._blockchain = new Blockchain(this._Config.gallactic_url);
+            this._blockchain = new Blockchain(this.intergallactic);
             return this._blockchain;
         }
     }   

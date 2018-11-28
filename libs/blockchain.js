@@ -1,13 +1,11 @@
 'use strict'
 
-var Intergallactic  = require('intergallactic');
 var Promise         = require('promise');
 var blockChain;
 
 module.exports = class Blockchain{
 
-    constructor(connectionUrl){
-        let intergallactic = new Intergallactic({ url: connectionUrl, protocol: 'jsonrpc' });
+    constructor(intergallactic){
         blockChain = intergallactic.gltc;
     }
 
