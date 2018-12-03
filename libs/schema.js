@@ -30,7 +30,9 @@ var Schema = {
 
     config_file : "/config.json",
     
-    link_order_file: "/link_order.json"   
+    link_order_file: "/link_order.json",
+
+    g_keystore: '/g_keystore'
 }
 
 

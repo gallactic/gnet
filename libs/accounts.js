@@ -21,19 +21,6 @@ module.exports = class Accounts {
             })
     }
     
-    createAccount(pass_phrase){    
-        return new Promise(function (resolve, reject) {
-            accounts.genPrivAccount(pass_phrase,(error,data)=>{
-                if(data){                                               
-                    resolve(data);
-                }    
-                else{
-                    reject(error);   
-                } 
-            })
-        }); 
-    }
-    
     getBalance(address){    
         return accounts.getAccount(address)
             .then(data => {

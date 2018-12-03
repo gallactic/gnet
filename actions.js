@@ -31,7 +31,8 @@ module.exports = class Action {
         this._accounts   = null;
         this._compile    = null;
         this._project    = null;
-        this._functions  = null;        
+        this._functions  = null; 
+        this._keys       = null;       
     } 
 
     _unsafeTxHandler(){
@@ -97,6 +98,16 @@ module.exports = class Action {
             let Accounts = require("./libs/accounts") ;
             this._accounts = new Accounts(this.intergallactic);
             return this._accounts;
+        }
+    } 
+
+    _keyHandler(){
+        if (this._keys != null){
+            return this._keys;
+        } else {
+            let Keys = require("./libs/keys") ;
+            this._keys = new Keys();
+            return this._keys;
         }
     } 
 
@@ -283,9 +294,9 @@ module.exports = class Action {
     }
 
     createAccount(passPhrase){
-        this._accountHandler().createAccount(passPhrase)
+        this._keyHandler().createAccount(passPhrase)
         .then(account => {
-            logger.console("Account :\n" + JSON.stringify(account,null,4));
+            logger.console("An encrypted keyfile for the account `" + account + "` is saved in $HOME/g_keystore")
         })
         .catch(function(ex) {
             logger.error(ex);           

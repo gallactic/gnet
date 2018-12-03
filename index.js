@@ -83,7 +83,7 @@ var actions = new Actions(config);
   program
   .command('create_account <pass_phrase>')
   .alias('crtac')
-  .description("\nCreates unsafe account included private key, public key and address and displays on the terminal, \
+  .description("\nCreates an account and saves the encrypted json file in $HOME/g_keystore , \
   \nNo need to initialize a project before using this command.\n\n")
   .action((pass_phrase) => actions.createAccount(pass_phrase));
 
