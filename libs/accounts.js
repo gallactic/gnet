@@ -1,5 +1,4 @@
 
-var Intergallactic  = require('intergallactic');
 var fs              = require('fs');
 var path            = require('path'); 
 var schema          = require('./schema').Schema;
@@ -8,8 +7,7 @@ var accounts        = null;
 
 module.exports = class Accounts {
 
-    constructor(connectionUrl){
-        let intergallactic = new Intergallactic({ url: connectionUrl, protocol: 'jsonrpc' });
+    constructor(intergallactic){
         accounts = intergallactic.account;
     }
     
@@ -21,19 +19,6 @@ module.exports = class Accounts {
             .catch(err => {
                 throw(err)
             })
-    }
-    
-    createAccount(pass_phrase){    
-        return new Promise(function (resolve, reject) {
-            accounts.genPrivAccount(pass_phrase,(error,data)=>{
-                if(data){                                               
-                    resolve(data);
-                }    
-                else{
-                    reject(error);   
-                } 
-            })
-        }); 
     }
     
     getBalance(address){    
