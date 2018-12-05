@@ -95,6 +95,13 @@ var actions = new Actions(config);
   .action((address) => actions.getBalance(address));
 
   program
+  .command('inspect <address> <pass_phrase>')
+  .alias('insp')
+  .description("\nInspect details of a specific account. This will display private key and public key.\
+  \nNo need to initialize a project before using this command.\n\n")
+  .action((address, pass_phrase) => actions.inspectAccount(address, pass_phrase));
+
+  program
   .command('sequence <address>')
   .alias('seq')
   .description("\nGet sequence of a specific account\

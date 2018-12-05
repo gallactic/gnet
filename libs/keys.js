@@ -42,7 +42,7 @@ module.exports = class Keys {
 
   /**
    * Generate filename for a keystore file.
-   * @param {string} address Ethereum address.
+   * @param {string} address Gallactic address.
    * @return {string} Keystore filename.
    */
   generateKeystoreFilename(address) {
@@ -70,5 +70,70 @@ module.exports = class Keys {
 
     const keyfile = path.join(keypath, outfile + ".json ");
     fs.writeFile(keyfile, json, callback);
+  }
+
+  inspectAccount(address, passphrase) {
+    return new Promise((resolve, reject) => {
+      try {
+        this.readFileByAddress(address, (error, account) => {
+          if(!error) {
+            const result = {};
+            result.address = account.address;
+            try {
+              const privateKey =  gallactickeys.recover(passphrase, account);
+              result.privateKey = privateKey;
+              const publicKeyHex = gallactickeys.utils.crypto.getTmPubKeyByPrivKey(privateKey);
+              const publicKey = gallactickeys.utils.crypto.bs58Encode(publicKeyHex, 4);
+              result.publicKey = publicKey;
+              resolve(result);
+            } catch (err) {
+              reject(err);
+            }
+          } else {
+            reject(error);
+          }
+        });
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
+  /**
+   * read file from g_keystore using address
+   * @param {*String} address 
+   * @param {*function} callback 
+   */
+  readFileByAddress(address, callback) {
+    const fs = require("fs"),
+    path = require("path"),
+    homedir = require("os").homedir(),
+    keypath = path.join(homedir, schema.g_keystore);
+
+    if (fs.existsSync(keypath)) {
+      let fileFound = false;
+      // read g_keystore directory
+      fs.readdir(keypath, function(err, items) {
+        for (var i=0; i<items.length; i++) {
+          const file = items[i];
+          const nameArray = file.split('--'); 
+          if(nameArray.length > 1) {
+            const fileName = nameArray[2].trim();
+            if(address+'.json' === fileName) {
+                fileFound = true;
+                const keyfile = path.join(keypath, file);
+                const keyContents = fs.readFileSync(keyfile, 'utf8');
+                callback(null, JSON.parse(keyContents));
+                break;
+            }
+          }
+        }
+        if(!fileFound) {
+          callback('Can not find keystore file in storage', null);
+        }
+      });
+    } else {
+      callback('Can not find "g_keystore". Create account first.', null);
+    }
   }
 };

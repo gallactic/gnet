@@ -303,6 +303,16 @@ module.exports = class Action {
         });
     }
 
+    inspectAccount(address, passPhrase){
+        this._keyHandler().inspectAccount(address, passPhrase)
+        .then(account => {
+            logger.console(`\nAddress: ${account.address}\nPrivate key: ${account.privateKey}\nPublic key: ${account.publicKey}`);
+        })
+        .catch((ex) => {
+            logger.error(ex);          
+        });
+    }
+
     getBalance(address){
         this._accountHandler().getBalance( address)
         .then(balance => {
