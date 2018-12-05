@@ -60,7 +60,7 @@ var actions = new Actions(config);
 
   program
   .command('migrate [accountname]')
-  .option('-f, --force', 'forcely migrate the contracts')
+  .option('-f, --force', 'Forcefully migrate the contracts')
   .alias('mgt')
   .description('\ndeploy contract on the Gallactic\
   \nyou need to initialize a project before using this command.\n\n')
@@ -90,14 +90,14 @@ var actions = new Actions(config);
   program
   .command('balance <address>')
   .alias('blnc')
-  .description("\nGet balance of a specefic account\
+  .description("\nGet balance of a specific account\
   \nNo need to initialize a project before using this command.\n\n")
   .action((address) => actions.getBalance(address));
 
   program
   .command('sequence <address>')
   .alias('seq')
-  .description("\nGet sequence of a specefic account\
+  .description("\nGet sequence of a specific account\
   \nNo need to initialize a project before using this command.\n\n")
   .action((address) => actions.getSequence(address));
 
@@ -113,7 +113,7 @@ var actions = new Actions(config);
   .command('bond <priv_key> <address> <amount> <fee> <public_key>')
   .option('-u, --unsafe', 'unsafe sending transaction')
   .alias('bnd')
-  .description('\n(safe) Do Bond transaction, you need pass the private key of sender and address of reciever\
+  .description('\n(safe) Do Bond transaction, you need pass the private key of sender and address of receiver\
   \nyou may need to initialize a project before using this command.\n\n')
   .action((priv_key,address,amount,fee,public_key,cmd) => actions.broadcastBond(priv_key,address,parseInt(amount),parseInt(fee),public_key,cmd.unsafe));
 
@@ -121,7 +121,7 @@ var actions = new Actions(config);
   .command('unbond <priv_key> <address> <amount> <fee>')
   .option('-u, --unsafe', 'unsafe sending transaction')
   .alias('ubnd')
-  .description('\n(safe) Do Unbond transaction, you need pass the private key of sender and address of reciever\
+  .description('\n(safe) Do Unbond transaction, you need pass the private key of sender and address of receiver\
   \nyou may need to initialize a project before using this command.\n\n')
   .action((priv_key,address,amount,fee,cmd) => actions.broadcastUnbond(priv_key,address,parseInt(amount),parseInt(fee),cmd.unsafe));
 
@@ -129,7 +129,7 @@ var actions = new Actions(config);
   .command('send <priv_key> <address> <amount> ')
   .option('-u, --unsafe', 'unsafe sending transaction')
   .alias('snd')
-  .description('\n(safe) Do regular transaction, you need to pass the private key of sender and address of reciever\
+  .description('\n(safe) Do regular transaction, you need to pass the private key of sender and address of receiver\
   \nyou need to initialize a project before using this command.\n\n')
   .action((priv_key,address,amount,cmd) => actions.send(priv_key,address,parseInt(amount),cmd.unsafe));
 
@@ -143,7 +143,7 @@ var actions = new Actions(config);
   program
   .command('call <contract_name> <function_name> [parameters_list]')
   .alias('calf')
-  .description("\nCalls the function of specefic contract, you need to pass the list of parameters like this var1,var2,...,varK ,comma separated, \
+  .description("\nCalls the function of specific contract, you need to pass the list of parameters like this var1,var2,...,varK ,comma separated, \
   \nYou need to initialize a project before using this command.\n\n")
   .action((contract_name,function_name,parameters_list) => actions.callFunction(contract_name,function_name,parameters_list));
 
