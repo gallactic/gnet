@@ -1,38 +1,42 @@
 {
-    "chainName": "test-chain-f9d6",
-    "genesisTime": "2018-11-19T11:16:45.758634+08:00",
-    "maximumPower": 0,
-    "sortitionFee": 0,
-    "global": {
-      "balance": 0,
-      "permissions": "0x0"
+  "chainName": "test-chain-55c0",
+  "genesisTime": "2018-12-04T14:21:08.852351+08:00",
+  "maximumPower": 0,
+  "sortitionFee": 0,
+  "global": {
+    "balance": 0,
+    "permissions": "0x0"
+  },
+  "accounts": [
+    {
+      "address": "acCxzUX83Aqg45ZiVDmhoYjozPyfBG1zhtQ",
+      "balance": 10000000000000000000,
+      "permissions": "0x1ff"
     },
-    "accounts": [
-      {
-        "address": "acM1ZVkxr7PKmyQiodAfdFVSBdAxpPVL4Fr",
-        "balance": 10000000000000000000
-      },
-      {
-        "address": "acPJZ5XQ9SBWny6s5VXmCPxw5MctZr5ivLf",
-        "balance": 10000000000000000000
-      },
-      {
-        "address": "acQCmJgGUcQNNti3W6219utFrfqgEZE1oLv",
-        "balance": 10000000000000000000
-      },
-      {
-        "address": "acUoXU3nMyNBsMNRC8ycKxV8rCencW67xtC",
-        "balance": 10000000000000000000
-      }
-    ],
-    "contracts": [
-      
-    ],
-    "validators": [
-      {
-        "address": "vaTTBn1vzZMENm9F7XYUh98DjqJfvSyySgM",
-        "stake": 0,
-        "publicKey": "pjfs7besGJJtWTexre2M8Zq48vMSSHn428gtfKswq1LPECjaunL"
-      }
-    ]
-  }
+    {
+      "address": "acGwa2qeap3535jNGFuvcyMqsD5wRYrSn5o",
+      "balance": 10000000000000000000,
+      "permissions": "0x1ff"
+    },
+    {
+      "address": "acKQq8iWQEbBGnmRgz8n3x1k5rtnURjaUHz",
+      "balance": 10000000000000000000,
+      "permissions": "0x1ff"
+    },
+    {
+      "address": "acDJnjdTELJSJNgwhSuWBdJgatGbnkCztn1",
+      "balance": 10000000000000000000,
+      "permissions": "0x1ff"
+    }
+  ],
+  "contracts": [
+    
+  ],
+  "validators": [
+    {
+      "address": "vaEFBaDfWzbTZqJyZji3fppqqRScs8ZoUQW",
+      "stake": 0,
+      "publicKey": "pjnRgvQqMkv4JDY2KyAAQiQq1CpDyEnB7uqGkYGsKRHhihtFyzT"
+    }
+  ]
+}

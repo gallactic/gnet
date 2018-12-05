@@ -6,7 +6,7 @@ var blockChain;
 module.exports = class Blockchain{
 
     constructor(intergallactic){
-        blockChain = intergallactic.gltc;
+        blockChain = intergallactic.gallactic;
     }
 
     getGenesisHash(){

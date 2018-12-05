@@ -10,7 +10,7 @@
   "dependencies": {
     "commander": "^2.9.0",
     "gallactickeys": "^0.2.2",
-    "intergallactic": "0.0.1",
+    "intergallactic": "github:gallactic/intergallactic#dev",
     "md5": "2.2.1",
     "promise": "8.0.1",
     "shelljs": "0.8.1",
