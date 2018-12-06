@@ -24,7 +24,7 @@ module.exports = class Blockchain{
 
         return blockChain.getChainId()
             .then(data => {
-                return data;
+                return data.body.result.ChainId;
             })
             .catch(err => {
                 throw(err)
