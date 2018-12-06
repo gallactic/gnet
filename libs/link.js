@@ -46,7 +46,6 @@ module.exports = class Linker {
                 if(linkOrder) fulfil(linkOrder);
                 else 
                 {
-                    throw new (" Error : can not create link order list!!!");  
                     reject(" Error : can not create link order list!!!");                  
                 }
             }
@@ -57,7 +56,7 @@ module.exports = class Linker {
             
         }).catch(err=>{
             console.log(err);
-
+            reject(err)
         });
     });        
         
