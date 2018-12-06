@@ -68,7 +68,7 @@ module.exports = class Keys {
       fs.mkdirSync(keypath);
     }
 
-    const keyfile = path.join(keypath, outfile + ".json ");
+    const keyfile = path.join(keypath, outfile + ".json");
     fs.writeFile(keyfile, json, callback);
   }
 
