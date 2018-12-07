@@ -309,7 +309,7 @@ module.exports = class Action {
             logger.console(`\nAddress: ${account.address}\nPrivate key: ${account.privateKey}\nPublic key: ${account.publicKey}`);
         })
         .catch((ex) => {
-            logger.error(ex);          
+            logger.error(ex);
         });
     }
 
