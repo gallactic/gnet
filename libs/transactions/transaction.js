@@ -5,6 +5,7 @@ var keys = new Keys;
 
 const SEND_TX_TYPE = 0x1
 const BOND_TX_TYPE  = 0x3;
+const UNBOND_TX_TYPE = 0x4;
 module.exports = class Transaction {
 
     constructor(intergallactic) {
@@ -16,7 +17,7 @@ module.exports = class Transaction {
         
         const myTx = {
             from: [{
-                address: account.address,
+                address: account.acAddress,
                 amount: amount
             }],
             to: [{
@@ -37,7 +38,7 @@ module.exports = class Transaction {
         
         const myTx = {
             from: {
-                address: account.address,
+                address: account.acAddress,
                 amount: amount
             },
             to: {
@@ -51,8 +52,22 @@ module.exports = class Transaction {
         return this.signAndBroadcast(myTx, priv_key, BOND_TX_TYPE)
     }
 
-    unbond() {
-        //TODO
+    unbond(address,amount,fee,priv_key) {
+        const account = keys.getAccountInfo(priv_key)
+
+        const myTx = {
+            from: {
+                address: account.vaAddress,
+                amount: amount
+            },
+            to: {
+                address: address,
+                amount: amount
+            },
+            gasLimit: fee
+        };
+
+        return this.signAndBroadcast(myTx, priv_key, UNBOND_TX_TYPE)
     }
 
     randomTransact() {

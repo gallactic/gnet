@@ -125,12 +125,12 @@ var actions = new Actions(config);
   .action((address,amount,fee,public_key,priv_key) => actions.broadcastBond(address,parseInt(amount),parseInt(fee),public_key,priv_key));
 
   program
-  .command('unbond <priv_key> <address> <amount> <fee>')
+  .command('unbond <address> <amount> <fee> <priv_key>')
   .option('-u, --unsafe', 'unsafe sending transaction')
   .alias('ubnd')
   .description('\n(safe) Do Unbond transaction, you need pass address of the sender \
   \nyou may need to initialize a project before using this command.\n\n')
-  .action((priv_key,address,amount,fee,cmd) => actions.broadcastUnbond(priv_key,address,parseInt(amount),parseInt(fee),cmd.unsafe));
+  .action((address,amount,fee,priv_key) => actions.broadcastUnbond(address,parseInt(amount),parseInt(fee),priv_key));
 
   program
   .command('send <toAddress> <amount> <priv_key>')

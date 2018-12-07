@@ -141,11 +141,13 @@ module.exports = class Keys {
   
     const publicKeyHex = gallactickeys.utils.crypto.getTmPubKeyByPrivKey(privateKey);
     const publicKey = gallactickeys.utils.crypto.bs58Encode(publicKeyHex, 4);
-    const address = gallactickeys.utils.crypto.getAcAddrByPrivKey(privateKey);
+    const acAddress = gallactickeys.utils.crypto.getAcAddrByPrivKey(privateKey);
+    const vaAddress = gallactickeys.utils.crypto.getVaAddrByPrivKey(privateKey);
     
     result.privateKey = privateKey;
     result.publicKey = publicKey;
-    result.address = address;   
+    result.acAddress = acAddress;
+    result.vaAddress = vaAddress;   
     
     return result;
   }

@@ -224,7 +224,7 @@ module.exports = class Action {
     inspectAccount(address, passPhrase){
         this._keyHandler().inspectAccount(address, passPhrase)
         .then(account => {
-            logger.console(`\nAddress: ${account.address}\nPrivate key: ${account.privateKey}\nPublic key: ${account.publicKey}`);
+            logger.console(`\nAddress: ${address}\nPrivate key: ${account.privateKey}\nPublic key: ${account.publicKey}`);
         })
         .catch((ex) => {
             logger.error(ex);
@@ -369,8 +369,8 @@ module.exports = class Action {
         });
     }
 
-    broadcastUnbond(privKey,address,amount,fee){                
-        return this._unbondTxHandler().broadcast(privKey,address,amount,fee).then(data =>{
+    broadcastUnbond(address,amount,fee,privKey){                
+        return this._txHandler().unbond(address,amount,fee,privKey).then(data =>{
             logger.console("Safe Unbond Tx result :\n" + JSON.stringify(data,null,4));
         }).catch(ex => {
             logger.error(ex);
