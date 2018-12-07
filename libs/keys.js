@@ -141,8 +141,8 @@ module.exports = class Keys {
   
     const publicKeyHex = gallactickeys.utils.crypto.getTmPubKeyByPrivKey(privateKey);
     const publicKey = gallactickeys.utils.crypto.bs58Encode(publicKeyHex, 4);
-    const address = gallactickeys.utils.crypto.getTmAddressByPrivKey(privateKey);
-
+    const address = gallactickeys.utils.crypto.getAcAddrByPrivKey(privateKey);
+    
     result.privateKey = privateKey;
     result.publicKey = publicKey;
     result.address = address;   

@@ -117,28 +117,28 @@ var actions = new Actions(config);
   .action((priv_key,data,address,fee,gas_limit,cmd) => actions.transact(priv_key,data,address,fee,gas_limit,cmd.unsafe));
 
   program
-  .command('bond <priv_key> <address> <amount> <fee> <public_key>')
-  .option('-u, --unsafe', 'unsafe sending transaction')
+  .command('bond <address> <amount> <fee> <public_key> <priv_key>')
+  .option('-u, --unsafe', 'unsafe sending transaction') //TODO (unsafe should be implemented using privatekey)
   .alias('bnd')
   .description('\n(safe) Do Bond transaction, you need pass the private key of sender and address of receiver\
   \nyou may need to initialize a project before using this command.\n\n')
-  .action((priv_key,address,amount,fee,public_key,cmd) => actions.broadcastBond(priv_key,address,parseInt(amount),parseInt(fee),public_key,cmd.unsafe));
+  .action((address,amount,fee,public_key,priv_key) => actions.broadcastBond(address,parseInt(amount),parseInt(fee),public_key,priv_key));
 
   program
   .command('unbond <priv_key> <address> <amount> <fee>')
   .option('-u, --unsafe', 'unsafe sending transaction')
   .alias('ubnd')
-  .description('\n(safe) Do Unbond transaction, you need pass the private key of sender and address of receiver\
+  .description('\n(safe) Do Unbond transaction, you need pass address of the sender \
   \nyou may need to initialize a project before using this command.\n\n')
   .action((priv_key,address,amount,fee,cmd) => actions.broadcastUnbond(priv_key,address,parseInt(amount),parseInt(fee),cmd.unsafe));
 
   program
-  .command('send <fromAddress> <toAddress> <amount> <priv_key>')
-  .option('-u, --unsafe', 'unsafe sending transaction')
+  .command('send <toAddress> <amount> <priv_key>')
+  .option('-u, --unsafe', 'unsafe sending transaction') //TODO (unsafe should be implemented using privatekey)
   .alias('snd')
-  .description('\n(safe) Do regular transaction, you need to pass the private key of sender and address of receiver\
+  .description('\n(safe) Do regular transaction, you need to pass the address of sender, receiver, amount and the private key of sender \
   \nyou need to initialize a project before using this command.\n\n')
-  .action((fromAddress,toAddress,amount,priv_key) => actions.send(fromAddress,toAddress,parseInt(amount),priv_key));
+  .action((toAddress,amount,priv_key) => actions.send(toAddress,parseInt(amount),priv_key));
 
   program
   .command('*')

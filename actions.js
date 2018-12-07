@@ -174,8 +174,8 @@ module.exports = class Action {
         }          
     }
 
-    send(fromAddress,toAddress,amount,priv_key){   
-        return this._txHandler().send(fromAddress,toAddress,amount,priv_key).then(data =>{
+    send(toAddress,amount,priv_key){   
+        return this._txHandler().send(toAddress,amount,priv_key).then(data =>{
             logger.console("Safe Send Tx result :\n" + JSON.stringify(data,null,4));
         }).catch(ex => {
             logger.error(ex);
@@ -242,7 +242,7 @@ module.exports = class Action {
     createAccount(passPhrase){
         this._keyHandler().createAccount(passPhrase)
         .then(account => {
-            logger.console("An encrypted keyfile for the account `" + account + "` is saved in $HOME/g_keystore")
+            logger.console("An encrypted keyfile for the account " + account + " is saved in $HOME/g_keystore")
         })
         .catch(function(ex) {
             logger.error(ex);           
@@ -389,8 +389,8 @@ module.exports = class Action {
         });
     }
 
-    broadcastBond(privKey,address,amount,fee,pubKey){                
-        return this._bondTxHandler().broadcast(privKey,address,amount,fee,pubKey).then(data =>{
+    broadcastBond(address,amount,fee,pubKey,privKey){                
+        return this._txHandler().bond(address,amount,fee,pubKey,privKey).then(data =>{
             logger.console("Safe Bond Tx result :\n" + JSON.stringify(data,null,4));
         }).catch(ex => {
             logger.error(ex);

@@ -1,26 +1,34 @@
 'use strict'
 
+var Keys        = require('../keys');
+var keys = new Keys;
+
 const SEND_TX_TYPE = 0x1
 module.exports = class Transaction {
 
     constructor(intergallactic) {
-        this.transaction = intergallactic.Transaction;
+        this.igc = intergallactic;
     }
 
-    send(fromAddress, toAddress, amount, priv_key) {
-        let myTx = this.buildTxn(fromAddress, toAddress, amount)
+    send(toAddress, amount, priv_key) {
+        const account = keys.getAccountInfo(priv_key)
+        
+        const myTx = {
+            from: [{
+                address: account.address,
+                amount: amount
+            }],
+            to: [{
+                address: toAddress,
+                amount: amount
+            }]
+        };
 
-        const sendTx = new this.transaction(myTx, { type: SEND_TX_TYPE });
-        return sendTx.signNBroadcast(priv_key).then(data => {
-            return data;
-        }).catch(ex => {
-            throw ex;
-        })
-
+        return this.signAndBroadcast(myTx, priv_key, SEND_TX_TYPE)
     }
 
     transact() {
-        //TODO 
+        let myTx = this.buildTxn(fromAddress, toAddress, amount)
     }
 
     bond() {
@@ -35,17 +43,12 @@ module.exports = class Transaction {
         //TODO
     }
 
-    buildTxn(fromAddress, toAddress, amount) {
-        const myTx = {
-            from: [{
-                address: fromAddress,
-                amount: amount
-            }],
-            to: [{
-                address: toAddress,
-                amount: amount
-            }]
-        };
-        return myTx;
+    signAndBroadcast(txnObject, priv_key, txnType) {
+
+        const newTxn = new this.igc.Transaction(txnObject, { type: txnType });
+
+        return newTxn.signNBroadcast(priv_key).then(data => {
+            return (data);
+        })
     }
 }
