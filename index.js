@@ -120,7 +120,7 @@ var actions = new Actions(config);
   .command('bond <address> <amount> <fee> <public_key> <priv_key>')
   .option('-u, --unsafe', 'unsafe sending transaction') //TODO (unsafe should be implemented using privatekey)
   .alias('bnd')
-  .description('\n(safe) Do Bond transaction, you need pass the private key of sender and address of receiver\
+  .description('\n(safe) Do Bond transaction, you need pass the validator address, stake amount, transaction fee, public key of the validator and private key of sender \
   \nyou may need to initialize a project before using this command.\n\n')
   .action((address,amount,fee,public_key,priv_key) => actions.broadcastBond(address,parseInt(amount),parseInt(fee),public_key,priv_key));
 

@@ -4,6 +4,7 @@ var Keys        = require('../keys');
 var keys = new Keys;
 
 const SEND_TX_TYPE = 0x1
+const BOND_TX_TYPE  = 0x3;
 module.exports = class Transaction {
 
     constructor(intergallactic) {
@@ -31,8 +32,23 @@ module.exports = class Transaction {
         let myTx = this.buildTxn(fromAddress, toAddress, amount)
     }
 
-    bond() {
-        //TODO
+    bond(address,amount,fee,pubKey,priv_key) {
+        const account = keys.getAccountInfo(priv_key)
+        
+        const myTx = {
+            from: {
+                address: account.address,
+                amount: amount
+            },
+            to: {
+                address: address,
+                amount: amount
+            },
+            publicKey: pubKey,
+            gasLimit: fee
+        };
+
+        return this.signAndBroadcast(myTx, priv_key, BOND_TX_TYPE)
     }
 
     unbond() {

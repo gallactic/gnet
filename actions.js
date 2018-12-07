@@ -182,34 +182,6 @@ module.exports = class Action {
         });   
     }
 
-    bond(privateKey,address,amount,fee,pubKey,unsafe){                 
-        if(unsafe === true){
-            this._txHandler().bond(privateKey,address,amount,fee,pubKey).then(data => {
-                logger.console(JSON.stringify(data,null,4));
-            })
-            .catch(function(ex) {
-                logger.error(JSON.stringify(ex,null,4));           
-            });
-        } 
-        else{
-            this.broadcastBond(privateKey,address,amount,fee,pubKey);
-        } 
-    }
-
-    unbond(privateKey,address,amount,fee,unsafe){                          
-        if(unsafe === true){
-            this._txHandler().unbond(privateKey,address,amount,fee).then(data => {
-                logger.console(JSON.stringify(data,null,4));
-            })
-            .catch(function(ex) {
-                logger.error(JSON.stringify(ex,null,4));           
-            });
-        } 
-        else{
-            this.broadcastUnbond(privateKey,address,amount,fee);
-        } 
-    }
-
     randomTransact(count){
         try{            
             this._txHandler().randomTransact(count,logger);

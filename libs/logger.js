@@ -39,7 +39,7 @@ module.exports = class Logger{
             }
             if(typeof message === 'string' || typeof message === 'String') {
                 this.write(message);  
-            else{
+            }else{
                 this.write(JSON.stringify(message,Object.getOwnPropertyNames(message),4));
             }  
             
