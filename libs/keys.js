@@ -52,7 +52,7 @@ module.exports = class Keys {
 
   /**
    * Save the encrypted keyfile in hidden keystore
-   * @param keyObject
+   * @param keyObject of the encrypted privateKey
    */
   exportToFile(keyObject, callback) {
     let outfile, json;
@@ -77,14 +77,9 @@ module.exports = class Keys {
       try {
         this.readFileByAddress(address, (error, account) => {
           if(!error) {
-            const result = {};
-            result.address = account.address;
             try {
               const privateKey =  gallactickeys.recover(passphrase, account);
-              result.privateKey = privateKey;
-              const publicKeyHex = gallactickeys.utils.crypto.getTmPubKeyByPrivKey(privateKey);
-              const publicKey = gallactickeys.utils.crypto.bs58Encode(publicKeyHex, 4);
-              result.publicKey = publicKey;
+              const result = this.getAccountInfo(privateKey)
               resolve(result);
             } catch (err) {
               reject(err);
@@ -101,7 +96,7 @@ module.exports = class Keys {
 
   /**
    * read file from g_keystore using address
-   * @param {*String} address 
+   * @param {*String} address of the keyObject
    * @param {*function} callback 
    */
   readFileByAddress(address, callback) {
@@ -135,5 +130,23 @@ module.exports = class Keys {
     } else {
       callback('Can not find "g_keystore". Create account first.', null);
     }
+  }
+
+  /**
+   * 
+   * @param {*String} privateKey 
+   */
+  getAccountInfo(privateKey) {
+    const result = {};
+  
+    const publicKeyHex = gallactickeys.utils.crypto.getTmPubKeyByPrivKey(privateKey);
+    const publicKey = gallactickeys.utils.crypto.bs58Encode(publicKeyHex, 4);
+    const address = gallactickeys.utils.crypto.getTmAddressByPrivKey(privateKey);
+
+    result.privateKey = privateKey;
+    result.publicKey = publicKey;
+    result.address = address;   
+    
+    return result;
   }
 };
