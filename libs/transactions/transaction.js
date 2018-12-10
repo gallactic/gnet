@@ -12,7 +12,7 @@ module.exports = class Transaction {
         this.igc = intergallactic;
     }
 
-    send(toAddress, amount, priv_key) {
+    send(address, amount, priv_key) {
         const account = keys.getAccountInfo(priv_key)
         
         const myTx = {
@@ -21,7 +21,7 @@ module.exports = class Transaction {
                 amount: amount
             }],
             to: [{
-                address: toAddress,
+                address: address,
                 amount: amount
             }]
         };

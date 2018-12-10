@@ -141,12 +141,12 @@ var actions = new Actions(config);
   .action((address,amount,fee,priv_key) => actions.broadcastUnbond(address,parseInt(amount),parseInt(fee),priv_key)); 
 
   program
-  .command('send <toAddress> <amount> <priv_key>')
+  .command('send <address> <amount> <priv_key>')
   .option('-u, --unsafe', 'unsafe sending transaction') //TODO (unsafe should be implemented using privatekey)
   .alias('snd')
-  .description('\n(safe) Do regular transaction, you need to pass the address of sender, receiver, amount and the private key of sender \
-  \nyou need to initialize a project before using this command.\n\n')
-  .action((toAddress,amount,priv_key) => actions.send(toAddress,parseInt(amount),priv_key));
+  .description('\n(safe) Do regular transaction, you need to pass the address of the receiver, amount and the private key of sender \
+  \nyou may need to initialize a project before using this command.\n\n')
+  .action((address,amount,priv_key) => actions.send(address,parseInt(amount),priv_key));
 
   program
   .command('*')

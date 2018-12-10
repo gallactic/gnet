@@ -174,8 +174,8 @@ module.exports = class Action {
         }          
     }
 
-    send(toAddress,amount,priv_key){   
-        return this._txHandler().send(toAddress,amount,priv_key).then(data =>{
+    send(address,amount,priv_key){   
+        return this._txHandler().send(address,amount,priv_key).then(data =>{
             logger.console("Safe Send Tx result :\n" + JSON.stringify(data,null,4));
         }).catch(ex => {
             logger.error(ex);
