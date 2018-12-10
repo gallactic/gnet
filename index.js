@@ -129,7 +129,7 @@ var actions = new Actions(config);
   .alias('bnd')
   .description('\n(safe) Do Bond transaction, you need pass the validator publickey, stake amount, transaction fee, and private key of sender \
   \nyou may need to initialize a project before using this command.\n\n')
-  .action((public_key,amount,fee,priv_key) => actions.broadcastBond(public_key,parseInt(public_key,amount),parseInt(fee),priv_key));
+  .action((public_key,amount,fee,priv_key) => actions.broadcastBond(public_key,parseInt(amount),parseInt(fee),priv_key));
 
   program
   .command('unbond <address> <amount> <fee> <priv_key>')
