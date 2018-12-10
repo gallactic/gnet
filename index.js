@@ -88,6 +88,13 @@ var actions = new Actions(config);
   .action((pass_phrase) => actions.createAccount(pass_phrase));
 
   program
+  .command('stakes <address>')
+  .alias('stk')
+  .description("\nGet stakes of validator account\
+  \nNo may need to initialize a project before using this command.\n\n")
+  .action((address) => actions.getStakes(address));
+  
+  program
   .command('balance <address>')
   .alias('blnc')
   .description("\nGet balance of a specific account\

@@ -34,6 +34,19 @@ module.exports = class Accounts {
             });
     }
 
+    getStakes(address){    
+        return accounts.getValidator(address)
+            .then(data => {
+                var result; 
+                var response = data.body.result;
+                response == null ? result = 0 : result = response.Validator.stake;
+                return result;
+            })
+            .catch(err => {
+                throw(err);
+            });
+    }
+
     getSequence(address){    
         return accounts.getAccount(address)
             .then(data => {

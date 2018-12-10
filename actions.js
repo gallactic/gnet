@@ -232,9 +232,19 @@ module.exports = class Action {
     }
 
     getBalance(address){
-        this._accountHandler().getBalance( address)
+        this._accountHandler().getBalance(address)
         .then(balance => {
             logger.console("Balance : " + balance);
+        })
+        .catch(function(ex) {
+            logger.error(ex);           
+        });
+    }
+
+    getStakes(address){
+        this._accountHandler().getStakes(address)
+        .then(stakes => {
+            logger.console("Stakes : " + stakes);
         })
         .catch(function(ex) {
             logger.error(ex);           
