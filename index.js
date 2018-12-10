@@ -88,6 +88,13 @@ var actions = new Actions(config);
   .action((pass_phrase) => actions.createAccount(pass_phrase));
 
   program
+  .command('stakes <address>')
+  .alias('stk')
+  .description("\nGet stakes of validator account\
+  \nNo may need to initialize a project before using this command.\n\n")
+  .action((address) => actions.getStakes(address));
+  
+  program
   .command('balance <address>')
   .alias('blnc')
   .description("\nGet balance of a specific account\
@@ -117,28 +124,29 @@ var actions = new Actions(config);
   .action((priv_key,data,address,fee,gas_limit,cmd) => actions.transact(priv_key,data,address,fee,gas_limit,cmd.unsafe));
 
   program
-  .command('bond <priv_key> <address> <amount> <fee> <public_key>')
-  .option('-u, --unsafe', 'unsafe sending transaction')
+  .command('bond <public_key> <amount> <fee> <priv_key>')
+  .option('-u, --unsafe', 'unsafe transaction') //TODO (unsafe should be implemented using privatekey)
   .alias('bnd')
-  .description('\n(safe) Do Bond transaction, you need pass the private key of sender and address of receiver\
+  .description('\n(safe) Do Bond transaction, you need pass the validator publickey, stake amount, transaction fee, and private key of sender \
   \nyou may need to initialize a project before using this command.\n\n')
-  .action((priv_key,address,amount,fee,public_key,cmd) => actions.broadcastBond(priv_key,address,parseInt(amount),parseInt(fee),public_key,cmd.unsafe));
+  .action((public_key,amount,fee,priv_key) => actions.broadcastBond(public_key,parseInt(public_key,amount),parseInt(fee),priv_key));
 
   program
-  .command('unbond <priv_key> <address> <amount> <fee>')
+  .command('unbond <address> <amount> <fee> <priv_key>')
   .option('-u, --unsafe', 'unsafe sending transaction')
   .alias('ubnd')
-  .description('\n(safe) Do Unbond transaction, you need pass the private key of sender and address of receiver\
-  \nyou may need to initialize a project before using this command.\n\n')
-  .action((priv_key,address,amount,fee,cmd) => actions.broadcastUnbond(priv_key,address,parseInt(amount),parseInt(fee),cmd.unsafe));
+  .description('\n(safe) Do Unbond transaction, you need pass account address, stake amount, transaction fee and private key of the validator \
+  \nyou may need to initialize a project before using this command.\
+  \nNote: you should be a validator to do unbond transaction.\n\n')
+  .action((address,amount,fee,priv_key) => actions.broadcastUnbond(address,parseInt(amount),parseInt(fee),priv_key)); 
 
   program
-  .command('send <priv_key> <address> <amount> ')
-  .option('-u, --unsafe', 'unsafe sending transaction')
+  .command('send <address> <amount> <priv_key>')
+  .option('-u, --unsafe', 'unsafe sending transaction') //TODO (unsafe should be implemented using privatekey)
   .alias('snd')
-  .description('\n(safe) Do regular transaction, you need to pass the private key of sender and address of receiver\
-  \nyou need to initialize a project before using this command.\n\n')
-  .action((priv_key,address,amount,cmd) => actions.send(priv_key,address,parseInt(amount),cmd.unsafe));
+  .description('\n(safe) Do regular transaction, you need to pass the address of the receiver, amount and the private key of sender \
+  \nyou may need to initialize a project before using this command.\n\n')
+  .action((address,amount,priv_key) => actions.send(address,parseInt(amount),priv_key));
 
   program
   .command('*')
