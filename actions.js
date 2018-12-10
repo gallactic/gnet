@@ -361,8 +361,8 @@ module.exports = class Action {
         });
     }
 
-    broadcastBond(address,amount,fee,pubKey,privKey){                
-        return this._txHandler().bond(address,amount,fee,pubKey,privKey).then(data =>{
+    broadcastBond(pubKey,amount,fee,privKey){                
+        return this._txHandler().bond(pubKey,amount,fee,privKey).then(data =>{
             logger.console("Safe Bond Tx result :\n" + JSON.stringify(data,null,4));
         }).catch(ex => {
             logger.error(ex);

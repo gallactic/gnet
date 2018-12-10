@@ -3,7 +3,7 @@ var schema = require("./schema").Schema;
 var Promise = require("promise");
 
 module.exports = class Keys {
- 
+
   constructor() {
 
   }
@@ -60,9 +60,9 @@ module.exports = class Keys {
     json = JSON.stringify(keyObject);
 
     const fs = require("fs"),
-    path = require("path"),
-    homedir = require("os").homedir(),
-    keypath = path.join(homedir, schema.g_keystore);
+      path = require("path"),
+      homedir = require("os").homedir(),
+      keypath = path.join(homedir, schema.g_keystore);
 
     if (!fs.existsSync(keypath)) {
       fs.mkdirSync(keypath);
@@ -76,9 +76,9 @@ module.exports = class Keys {
     return new Promise((resolve, reject) => {
       try {
         this.readFileByAddress(address, (error, account) => {
-          if(!error) {
+          if (!error) {
             try {
-              const privateKey =  gallactickeys.recover(passphrase, account);
+              const privateKey = gallactickeys.recover(passphrase, account);
               const result = this.getAccountInfo(privateKey)
               resolve(result);
             } catch (err) {
@@ -101,29 +101,29 @@ module.exports = class Keys {
    */
   readFileByAddress(address, callback) {
     const fs = require("fs"),
-    path = require("path"),
-    homedir = require("os").homedir(),
-    keypath = path.join(homedir, schema.g_keystore);
+      path = require("path"),
+      homedir = require("os").homedir(),
+      keypath = path.join(homedir, schema.g_keystore);
 
     if (fs.existsSync(keypath)) {
       let fileFound = false;
       // read g_keystore directory
-      fs.readdir(keypath, function(err, items) {
-        for (var i=0; i<items.length; i++) {
+      fs.readdir(keypath, function (err, items) {
+        for (var i = 0; i < items.length; i++) {
           const file = items[i];
-          const nameArray = file.split('--'); 
-          if(nameArray.length > 1) {
+          const nameArray = file.split('--');
+          if (nameArray.length > 1) {
             const fileName = nameArray[2].trim();
-            if(address+'.json' === fileName) {
-                fileFound = true;
-                const keyfile = path.join(keypath, file);
-                const keyContents = fs.readFileSync(keyfile, 'utf8');
-                callback(null, JSON.parse(keyContents));
-                break;
+            if (address + '.json' === fileName) {
+              fileFound = true;
+              const keyfile = path.join(keypath, file);
+              const keyContents = fs.readFileSync(keyfile, 'utf8');
+              callback(null, JSON.parse(keyContents));
+              break;
             }
           }
         }
-        if(!fileFound) {
+        if (!fileFound) {
           callback('Can not find keystore file in storage', null);
         }
       });
@@ -138,17 +138,35 @@ module.exports = class Keys {
    */
   getAccountInfo(privateKey) {
     const result = {};
-  
+
     const publicKeyHex = gallactickeys.utils.crypto.getTmPubKeyByPrivKey(privateKey);
     const publicKey = gallactickeys.utils.crypto.bs58Encode(publicKeyHex, 4);
     const acAddress = gallactickeys.utils.crypto.getAcAddrByPrivKey(privateKey);
     const vaAddress = gallactickeys.utils.crypto.getVaAddrByPrivKey(privateKey);
-    
+
     result.privateKey = privateKey;
     result.publicKey = publicKey;
     result.acAddress = acAddress;
-    result.vaAddress = vaAddress;   
-    
+    result.vaAddress = vaAddress;
+
     return result;
   }
+
+  /**
+   * 
+   * @param {*String} publicKey 
+   */
+  getInfoByPublicKey(publicKey) {
+    const result = {};
+
+    const address = gallactickeys.utils.crypto.getTmAddressByPubKey(publicKey);
+    const acAddress = gallactickeys.utils.crypto.bs58Encode(address, 1);
+    const vaAddress = gallactickeys.utils.crypto.bs58Encode(address, 2);
+
+    result.acAddress = acAddress;
+    result.vaAddress = vaAddress;
+
+    return result;
+  }
+
 };

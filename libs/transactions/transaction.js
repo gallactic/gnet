@@ -33,16 +33,17 @@ module.exports = class Transaction {
         let myTx = this.buildTxn(fromAddress, toAddress, amount)
     }
 
-    bond(address,amount,fee,pubKey,priv_key) {
+    bond(pubKey,amount,fee,priv_key) {
         const account = keys.getAccountInfo(priv_key)
-        
+        const vaAccount = keys.getInfoByPublicKey(pubKey)
+
         const myTx = {
             from: {
                 address: account.acAddress,
                 amount: amount
             },
             to: {
-                address: address,
+                address: vaAccount.vaAddress,
                 amount: amount
             },
             publicKey: pubKey,
