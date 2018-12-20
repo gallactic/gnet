@@ -5,7 +5,7 @@
   "sortitionFee": 0,
   "global": {
     "balance": 0,
-    "permissions": "0x0"
+    "permissions": "0x1ff"
   },
   "accounts": [
     {
