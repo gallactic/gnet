@@ -59,6 +59,14 @@ var actions = new Actions(config);
   .action(() => actions.compileAll());
 
   program
+  .command('test')
+  .alias('tst')
+  .description('\n runs tests in test folder with .js extension\
+  \n snak test integrates mocha and chai for testing\
+  \nyou need to initialize a project before using this command.\n\n')
+  .action(() => actions.testAll());
+
+  program
   .command('migrate [accountname]')
   .option('-f, --force', 'Forcefully migrate the contracts')
   .alias('mgt')

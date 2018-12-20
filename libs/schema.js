@@ -6,8 +6,6 @@ var Schema = {
 
     gnet_path : __dirname,
 
-    test : "/test",
-
     contracts : "/contracts",
 
     migration : "/migration",
@@ -15,6 +13,8 @@ var Schema = {
     migration_output:"/migration_output_",
 
     build : "/build",
+
+    test : "/test",
 
     accounts : "/accounts",
 

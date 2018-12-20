@@ -26,6 +26,7 @@ module.exports = class Action {
         this._safeTx     = null;
         this._accounts   = null;
         this._compile    = null;
+        this._test       = null;
         this._project    = null;
         this._functions  = null; 
         this._keys       = null;       
@@ -74,6 +75,17 @@ module.exports = class Action {
         }
     } 
 
+    _testHandler(){
+        if (this._test != null){
+            return this._test;
+        }
+        else{
+            let Test  = require("./libs/test");
+            this._test = new Test();
+            return this._test;
+        }
+    } 
+
     _projectHandler(){
         if (this._project != null){
             return this._project;
@@ -102,7 +114,7 @@ module.exports = class Action {
         }            
         else{
             let Deploy  = require("./libs/deploy");
-            this.deploy = new Deploy(this._Config.gallactic_url);
+            this.deploy = new Deploy(this.intergallactic);
             return this.deploy;
         }         
     }
@@ -137,7 +149,16 @@ module.exports = class Action {
         }
     }
 
-    migrate( accountName,isForce){
+    testAll(){
+        try{                        
+            this._testHandler().testAll();            
+        }
+        catch(ex){
+            logger.error(ex);
+        }
+    }
+
+    migrate(accountName,isForce){
         try{             
             let Link = require("./libs/link");  
             let linker = new Link();   
