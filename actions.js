@@ -203,6 +203,14 @@ module.exports = class Action {
         });   
     }
 
+    permission(address,perm_value,priv_key){   
+        return this._txHandler().permission(address,perm_value,priv_key).then(data =>{
+            logger.console("Safe permission Tx result :\n" + JSON.stringify(data,null,4));
+        }).catch(ex => {
+            logger.error(ex);
+        });   
+    }
+    
     randomTransact(count){
         try{            
             this._txHandler().randomTransact(count,logger);
