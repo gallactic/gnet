@@ -20,7 +20,7 @@ catch(ex){
 }
 
 var actions = new Actions(config);
-  program
+program
   .version('0.0.5')
   .description('gnet');
 
@@ -155,6 +155,14 @@ var actions = new Actions(config);
   .description('\n(safe) Do regular transaction, you need to pass the address of the receiver, amount and the private key of sender \
   \nyou may need to initialize a project before using this command.\n\n')
   .action((address,amount,priv_key) => actions.send(address,parseInt(amount),priv_key));
+  
+  program
+  .command('permission <address> <perm_value> <priv_key>')
+  .option('-u, --unsafe', 'unsafe sending transaction') //TODO (unsafe should be implemented using privatekey)
+  .alias('perm')
+  .description('\n(safe) Do regular transaction, you need to pass the permission value and address of the receiver, private key of sender \
+  \nyou may need to initialize a project before using this command.\n\n')
+  .action((address,perm_value,priv_key) => actions.permission(address,perm_value,priv_key));
 
   program
   .command('*')

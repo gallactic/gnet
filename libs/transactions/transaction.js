@@ -6,6 +6,8 @@ var keys = new Keys;
 const SEND_TX_TYPE = 0x1
 const BOND_TX_TYPE  = 0x3;
 const UNBOND_TX_TYPE = 0x4;
+const PERMISSION_TX_TYPE = 0x5;
+
 module.exports = class Transaction {
 
     constructor(intergallactic) {
@@ -29,6 +31,24 @@ module.exports = class Transaction {
         return this.signAndBroadcast(myTx, priv_key, SEND_TX_TYPE)
     }
 
+    permission(address,perm_value,priv_key) {
+        const account = keys.getAccountInfo(priv_key)
+        const myTx = {
+            from: {
+              address: account.acAddress,
+              amount: 0
+            },
+            to: {
+              address: address,
+              amount: 0
+            },
+            permissions: perm_value,
+            set: true
+        }
+
+        return this.signAndBroadcast(myTx, priv_key,PERMISSION_TX_TYPE)
+    }
+    
     transact() {
         let myTx = this.buildTxn(fromAddress, toAddress, amount)
     }
