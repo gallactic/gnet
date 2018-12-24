@@ -1,14 +1,12 @@
 'use strict'
 
-var Intergallactic  = require('intergallactic');
 var Promise         = require('promise');
 var blockChain;
 
 module.exports = class Blockchain{
 
-    constructor(connectionUrl){
-        let intergallactic = new Intergallactic({ url: connectionUrl, protocol: 'jsonrpc' });
-        blockChain = intergallactic.gltc;
+    constructor(intergallactic){
+        blockChain = intergallactic.gallactic;
     }
 
     getGenesisHash(){
@@ -26,7 +24,7 @@ module.exports = class Blockchain{
 
         return blockChain.getChainId()
             .then(data => {
-                return data;
+                return data.body.result.ChainId;
             })
             .catch(err => {
                 throw(err)

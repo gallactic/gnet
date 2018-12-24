@@ -61,7 +61,7 @@ Call smart contract's functions:
 
 $ gnet call <contract_name> <function_name> <parameters_list>
 
-The parameters are pretty clear the only thing you need to care is parameters_list, its formar must be like this:   var1,var2,...,varK (comma separated)
+The parameters are pretty clear the only thing you need to care is parameters_list, its format must be like this:   var1,var2,...,varK (comma separated)
 
 ```
 
@@ -89,14 +89,6 @@ The parameters are pretty clear the only thing you need to care is parameters_li
     run gallactic blockchain,you need install gallactic first!,   
     No need to initialize project for this command.
     
-    gKeys|rks [ip_address]                                               
-    Runs the gallactic key server on port 4776,   
-    No need to initialize a project before using this command.
-    
-    import_keys|imks [file_name]                                         
-    Import keys in the gallactic key server  
-    No need to initialize a project before using this command.
-    
     init|int                                                             
     Initialize project, makes folders and files which are needed for starting a dapp project.
     
@@ -105,7 +97,7 @@ The parameters are pretty clear the only thing you need to care is parameters_li
     you need to initialize a project before using this command.
     
     migrate|mgt [options] [accountname]                                  
-    deploy contract on the Gallactic  
+    deploy contracts on the Gallactic  
     you need to initialize a project before using this command.
     
     list_accounts|lacnt                                                  
@@ -124,7 +116,7 @@ The parameters are pretty clear the only thing you need to care is parameters_li
     Get balance of a specefic account  
     No need to initialize a project before using this command.
     
-    sequence|blnc <address>                                              
+    sequence|seq <address>                                              
     Get sequence of a specefic account  
     No need to initialize a project before using this command.
     
@@ -132,15 +124,15 @@ The parameters are pretty clear the only thing you need to care is parameters_li
     (Unsafe!) Do regular transaction to a contract, you need pass the private key of sender and address of contract  
     you need to initialize a project before using this command.
     
-    bond|bnd [options] <priv_key> <address> <amount> <fee> <public_key>  
+    bond|bnd [options] <public_key> <address> <amount> <fee>  <priv_key>
     (safe) Do Bond transaction, you need pass the private key of sender and address of reciever  
     you may need to initialize a project before using this command.
     
-    unbond|ubnd [options] <priv_key> <address> <amount> <fee>            
+    unbond|ubnd [options] <address> <amount> <fee> <priv_key>        
     (safe) Do Unbond transaction, you need pass the private key of sender and address of reciever  
     you may need to initialize a project before using this command.
     
-    send|snd [options] <priv_key> <address> <amount>                     
+    send|snd [options] <address> <amount> <priv_key>                  
     (safe) Do regular transaction, you need pass the private key of sender and address of reciever  
     you need to initialize a project before using this command.
     

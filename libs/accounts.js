@@ -1,5 +1,4 @@
 
-var Intergallactic  = require('intergallactic');
 var fs              = require('fs');
 var path            = require('path'); 
 var schema          = require('./schema').Schema;
@@ -8,8 +7,7 @@ var accounts        = null;
 
 module.exports = class Accounts {
 
-    constructor(connectionUrl){
-        let intergallactic = new Intergallactic({ url: connectionUrl, protocol: 'jsonrpc' });
+    constructor(intergallactic){
         accounts = intergallactic.account;
     }
     
@@ -23,25 +21,25 @@ module.exports = class Accounts {
             })
     }
     
-    createAccount(pass_phrase){    
-        return new Promise(function (resolve, reject) {
-            accounts.genPrivAccount(pass_phrase,(error,data)=>{
-                if(data){                                               
-                    resolve(data);
-                }    
-                else{
-                    reject(error);   
-                } 
-            })
-        }); 
-    }
-    
     getBalance(address){    
         return accounts.getAccount(address)
             .then(data => {
                 var result; 
                 var response = data.body.result;
                 response == null ? result = 0 : result = response.Account.balance;
+                return result;
+            })
+            .catch(err => {
+                throw(err);
+            });
+    }
+
+    getStakes(address){    
+        return accounts.getValidator(address)
+            .then(data => {
+                var result; 
+                var response = data.body.result;
+                response == null ? result = 0 : result = response.Validator.stake;
                 return result;
             })
             .catch(err => {
@@ -63,31 +61,32 @@ module.exports = class Accounts {
     }
         
     getPermissions(address){        
-        return new Promise(function (resolve, reject) {
-            accounts.getAccount(address,(error,data)=>{
-                if(data){                                               
-                    resolve(data.Account.Permissions);
-                }    
-                else{
-                    reject(error);   
-                } 
+        return accounts.getAccount(address)
+            .then(data => {
+                var result; 
+                var response = data.body.result;
+                response == null ? result = "0x0" : result = response.Account.permissions;
+                return result;
             })
-        });
+            .catch(err => {
+                throw(err);
+            });
     }
     
     getStorageRoot(address){        
-        return new Promise(function (resolve, reject) {
-            accounts.getAccount(address,(error,data)=>{
-                if(data){                                               
-                    resolve(data.Account.StorageRoot);
-                }    
-                else{
-                    reject(error);   
-                } 
+        return accounts.getStorage(address)
+            .then(data => {
+                var result; 
+                var response = data.body.result;
+                response == null ? result = "0x0" : result = response;
+                return result;
             })
-        });
+            .catch(err => {
+                throw(err);
+            });
     }
 
+    //TODO : method not yet available
     getCode(address){    
         return new Promise(function (resolve, reject) {
             accounts.getAccount(address,(error,data)=>{

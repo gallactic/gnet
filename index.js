@@ -20,7 +20,7 @@ catch(ex){
 }
 
 var actions = new Actions(config);
-  program
+program
   .version('0.0.5')
   .description('gnet');
 
@@ -59,8 +59,16 @@ var actions = new Actions(config);
   .action(() => actions.compileAll());
 
   program
+  .command('test')
+  .alias('tst')
+  .description('\n runs tests in test folder with .js extension\
+  \n snak test integrates mocha and chai for testing\
+  \nyou need to initialize a project before using this command.\n\n')
+  .action(() => actions.testAll());
+
+  program
   .command('migrate [accountname]')
-  .option('-f, --force', 'forcely migrate the contracts')
+  .option('-f, --force', 'Forcefully migrate the contracts')
   .alias('mgt')
   .description('\ndeploy contract on the Gallactic\
   \nyou need to initialize a project before using this command.\n\n')
@@ -83,21 +91,35 @@ var actions = new Actions(config);
   program
   .command('create_account <pass_phrase>')
   .alias('crtac')
-  .description("\nCreates unsafe account included private key, public key and address and displays on the terminal, \
+  .description("\nCreates an account and saves the encrypted json file in $HOME/g_keystore , \
   \nNo need to initialize a project before using this command.\n\n")
   .action((pass_phrase) => actions.createAccount(pass_phrase));
 
   program
+  .command('stakes <address>')
+  .alias('stk')
+  .description("\nGet stakes of validator account\
+  \nNo may need to initialize a project before using this command.\n\n")
+  .action((address) => actions.getStakes(address));
+  
+  program
   .command('balance <address>')
   .alias('blnc')
-  .description("\nGet balance of a specefic account\
+  .description("\nGet balance of a specific account\
   \nNo need to initialize a project before using this command.\n\n")
   .action((address) => actions.getBalance(address));
 
   program
+  .command('inspect <address> <pass_phrase>')
+  .alias('insp')
+  .description("\nInspect details of a specific account. This will display private key and public key.\
+  \nNo need to initialize a project before using this command.\n\n")
+  .action((address, pass_phrase) => actions.inspectAccount(address, pass_phrase));
+
+  program
   .command('sequence <address>')
   .alias('seq')
-  .description("\nGet sequence of a specefic account\
+  .description("\nGet sequence of a specific account\
   \nNo need to initialize a project before using this command.\n\n")
   .action((address) => actions.getSequence(address));
 
@@ -110,28 +132,37 @@ var actions = new Actions(config);
   .action((priv_key,data,address,fee,gas_limit,cmd) => actions.transact(priv_key,data,address,fee,gas_limit,cmd.unsafe));
 
   program
-  .command('bond <priv_key> <address> <amount> <fee> <public_key>')
-  .option('-u, --unsafe', 'unsafe sending transaction')
+  .command('bond <public_key> <amount> <fee> <priv_key>')
+  .option('-u, --unsafe', 'unsafe transaction') //TODO (unsafe should be implemented using privatekey)
   .alias('bnd')
-  .description('\n(safe) Do Bond transaction, you need pass the private key of sender and address of reciever\
+  .description('\n(safe) Do Bond transaction, you need pass the validator publickey, stake amount, transaction fee, and private key of sender \
   \nyou may need to initialize a project before using this command.\n\n')
-  .action((priv_key,address,amount,fee,public_key,cmd) => actions.broadcastBond(priv_key,address,parseInt(amount),parseInt(fee),public_key,cmd.unsafe));
+  .action((public_key,amount,fee,priv_key) => actions.broadcastBond(public_key,parseInt(amount),parseInt(fee),priv_key));
 
   program
-  .command('unbond <priv_key> <address> <amount> <fee>')
+  .command('unbond <address> <amount> <fee> <priv_key>')
   .option('-u, --unsafe', 'unsafe sending transaction')
   .alias('ubnd')
-  .description('\n(safe) Do Unbond transaction, you need pass the private key of sender and address of reciever\
-  \nyou may need to initialize a project before using this command.\n\n')
-  .action((priv_key,address,amount,fee,cmd) => actions.broadcastUnbond(priv_key,address,parseInt(amount),parseInt(fee),cmd.unsafe));
+  .description('\n(safe) Do Unbond transaction, you need pass account address, stake amount, transaction fee and private key of the validator \
+  \nyou may need to initialize a project before using this command.\
+  \nNote: you should be a validator to do unbond transaction.\n\n')
+  .action((address,amount,fee,priv_key) => actions.broadcastUnbond(address,parseInt(amount),parseInt(fee),priv_key)); 
 
   program
-  .command('send <priv_key> <address> <amount> ')
-  .option('-u, --unsafe', 'unsafe sending transaction')
+  .command('send <address> <amount> <priv_key>')
+  .option('-u, --unsafe', 'unsafe sending transaction') //TODO (unsafe should be implemented using privatekey)
   .alias('snd')
-  .description('\n(safe) Do regular transaction, you need to pass the private key of sender and address of reciever\
-  \nyou need to initialize a project before using this command.\n\n')
-  .action((priv_key,address,amount,cmd) => actions.send(priv_key,address,parseInt(amount),cmd.unsafe));
+  .description('\n(safe) Do regular transaction, you need to pass the address of the receiver, amount and the private key of sender \
+  \nyou may need to initialize a project before using this command.\n\n')
+  .action((address,amount,priv_key) => actions.send(address,parseInt(amount),priv_key));
+  
+  program
+  .command('permission <address> <perm_value> <priv_key>')
+  .option('-u, --unsafe', 'unsafe sending transaction') //TODO (unsafe should be implemented using privatekey)
+  .alias('perm')
+  .description('\n(safe) Do regular permission transaction, you need to pass the permission value and address of the receiver, private key of sender \
+  \nyou may need to initialize a project before using this command.\n\n')
+  .action((address,perm_value,priv_key) => actions.permission(address,perm_value,priv_key));
 
   program
   .command('*')
@@ -143,7 +174,7 @@ var actions = new Actions(config);
   program
   .command('call <contract_name> <function_name> [parameters_list]')
   .alias('calf')
-  .description("\nCalls the function of specefic contract, you need to pass the list of parameters like this var1,var2,...,varK ,comma separated, \
+  .description("\nCalls the function of specific contract, you need to pass the list of parameters like this var1,var2,...,varK ,comma separated, \
   \nYou need to initialize a project before using this command.\n\n")
   .action((contract_name,function_name,parameters_list) => actions.callFunction(contract_name,function_name,parameters_list));
 

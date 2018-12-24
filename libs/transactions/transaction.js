@@ -1,44 +1,106 @@
 'use strict'
 
+var Keys        = require('../keys');
+var keys = new Keys;
 
-var gallacticDbFactory = require('gnet-db');
+const SEND_TX_TYPE = 0x1
+const BOND_TX_TYPE  = 0x3;
+const UNBOND_TX_TYPE = 0x4;
+const PERMISSION_TX_TYPE = 0x5;
 
 module.exports = class Transaction {
 
-    constructor(connectionUrl) {   
-
-        let gallactic   = gallacticDbFactory.createInstance(connectionUrl);
-        this._Trx     = gallactic.txs();  
-        let TenderKeys   = require("tenderkeys");
-        this._tenderKeys = new TenderKeys;
-        this.connectionUrl = connectionUrl;      
+    constructor(intergallactic) {
+        this.igc = intergallactic;
     }
 
-    sign(privKey,tx){                
-                
-        let signature = this._tenderKeys.sign(privKey,tx);
-        return signature.toString("hex");
-    }
-
-    generateAccount(privateKey) {
-        let pubKey = this._tenderKeys.getPubKeyFromPrivKey(privateKey);
-        let address = this._tenderKeys.getAddressFromPrivKey(privateKey);  
+    send(address, amount, priv_key) {
+        const account = keys.getAccountInfo(priv_key)
         
-        return { address: address, pubKey: pubKey , privKey: privateKey };
+        const myTx = {
+            from: [{
+                address: account.acAddress,
+                amount: amount
+            }],
+            to: [{
+                address: address,
+                amount: amount
+            }]
+        };
+
+        return this.signAndBroadcast(myTx, priv_key, SEND_TX_TYPE)
     }
 
-    broadcastTx(tx){ 
-        let _this = this;
-        return new Promise(function (resolve, reject) {
-            _this._Trx.broadcastTx(tx,(error,data)=>{
-                if(data){                                               
-                    resolve(data);
-                }    
-                else{
-                    reject(error);   
-                } 
-            })
-        }); 
+    permission(address,perm_value,priv_key) {
+        const account = keys.getAccountInfo(priv_key)
+        const myTx = {
+            from: {
+              address: account.acAddress,
+              amount: 0
+            },
+            to: {
+              address: address,
+              amount: 0
+            },
+            permissions: perm_value,
+            set: true
+        }
+
+        return this.signAndBroadcast(myTx, priv_key,PERMISSION_TX_TYPE)
+    }
+    
+    transact() {
+        let myTx = this.buildTxn(fromAddress, toAddress, amount)
     }
 
+    bond(pubKey,amount,fee,priv_key) {
+        const account = keys.getAccountInfo(priv_key)
+        const vaAccount = keys.getInfoByPublicKey(pubKey)
+
+        const myTx = {
+            from: {
+                address: account.acAddress,
+                amount: amount
+            },
+            to: {
+                address: vaAccount.vaAddress,
+                amount: amount
+            },
+            publicKey: pubKey,
+            gasLimit: fee
+        };
+
+        return this.signAndBroadcast(myTx, priv_key, BOND_TX_TYPE)
+    }
+
+    unbond(address,amount,fee,priv_key) {
+        const account = keys.getAccountInfo(priv_key)
+
+        const myTx = {
+            from: {
+                address: account.vaAddress,
+                amount: amount
+            },
+            to: {
+                address: address,
+                amount: amount
+            },
+            gasLimit: fee
+        };
+
+        return this.signAndBroadcast(myTx, priv_key, UNBOND_TX_TYPE)
+    }
+
+    randomTransact() {
+        //TODO
+    }
+
+    signAndBroadcast(txnObject, priv_key, txnType) {
+
+        const newTxn = new this.igc.Transaction(txnObject, { type: txnType });
+
+        return newTxn.signNBroadcast(priv_key).then(data => {
+            return (data);
+        })
+    }
 }

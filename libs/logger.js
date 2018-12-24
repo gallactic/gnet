@@ -37,10 +37,10 @@ module.exports = class Logger{
             if(isFormat){     
                 this.write(this._format());
             }
-            if(typeof message === 'string' || typeof message === 'String')
+            if(typeof message === 'string' || typeof message === 'String') {
                 this.write(message);  
-            else{
-                this.write(JSON.stringify(message,null,4)); 
+            }else{
+                this.write(JSON.stringify(message,Object.getOwnPropertyNames(message),4));
             }  
             
             this.write("\n");
