@@ -61,7 +61,7 @@ Call smart contract's functions:
 
 $ gnet call <contract_name> <function_name> <parameters_list>
 
-The parameters are pretty clear the only thing you need to care is parameters_list, its formar must be like this:   var1,var2,...,varK (comma separated)
+The parameters are pretty clear the only thing you need to care is parameters_list, its format must be like this:   var1,var2,...,varK (comma separated)
 
 ```
 
@@ -97,7 +97,7 @@ The parameters are pretty clear the only thing you need to care is parameters_li
     you need to initialize a project before using this command.
     
     migrate|mgt [options] [accountname]                                  
-    deploy contract on the Gallactic  
+    deploy contracts on the Gallactic  
     you need to initialize a project before using this command.
     
     list_accounts|lacnt                                                  
@@ -116,7 +116,7 @@ The parameters are pretty clear the only thing you need to care is parameters_li
     Get balance of a specefic account  
     No need to initialize a project before using this command.
     
-    sequence|blnc <address>                                              
+    sequence|seq <address>                                              
     Get sequence of a specefic account  
     No need to initialize a project before using this command.
     
