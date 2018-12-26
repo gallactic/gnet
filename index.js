@@ -75,6 +75,13 @@ program
   .action((accountname,cmd) => actions.migrate(accountname,cmd.force));
 
   program
+  .command('ac_info <address>')
+  .alias('acinf')
+  .description('\nGet account info\
+  \nyou need to initialize a project before using this command.\n\n')
+  .action((address) => actions.accountInfo(address));
+
+  program
   .command('list_accounts')
   .alias('lacnt')
   .description('\nLoad all accounts\

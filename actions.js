@@ -220,6 +220,16 @@ module.exports = class Action {
         }
     }
 
+    accountInfo(address){
+        this._accountHandler().accountInfo(address)
+        .then(account => {
+            logger.console("Account Info:\n" + JSON.stringify(account,null,4));
+        })
+        .catch(ex => {
+            logger.error(ex);
+        });
+    }
+
     loadAccounts(){
         this._accountHandler().loadAccounts()
         .then(accounts => {

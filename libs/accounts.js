@@ -11,6 +11,16 @@ module.exports = class Accounts {
         accounts = intergallactic.account;
     }
     
+    accountInfo(address){
+        return accounts.getAccount(address)
+            .then(data => {
+                return data.body.result;
+            })
+            .catch(err => {
+                throw(err)
+            })
+    }
+
     loadAccounts(){
         return accounts.listAccounts()
             .then(data => {
