@@ -113,7 +113,7 @@ program
   .command('stakes <address>')
   .alias('stk')
   .description("\nGet stakes of validator account\
-  \nNo may need to initialize a project before using this command.\n\n")
+  \nNo need to initialize a project before using this command.\n\n")
   .action((address) => actions.getStakes(address));
   
   program
