@@ -13,61 +13,71 @@ module.exports = class Accounts {
     
     accountInfo(address){
         return accounts.getAccount(address)
-            .then(data => {
-                return data.body.result;
-            })
-            .catch(err => {
-                throw(err)
-            })
+        .then(data => {
+            return data.body.result;
+        })
+        .catch(err => {
+            throw(err)
+        })
+    }
+
+    validatorInfo(address){
+        return accounts.getValidator(address)
+        .then(data => {
+            return data.body.result;
+        })
+        .catch(err => {
+            throw(err);
+        })
     }
 
     loadAccounts(){
         return accounts.listAccounts()
-            .then(data => {
-                return data.body.result.Accounts;
-            })
-            .catch(err => {
-                throw(err)
-            })
+        .then(data => {
+            return data.body.result.Accounts;
+        })
+        .catch(err => {
+            throw(err)
+        })
     }
     
     getBalance(address){    
         return accounts.getAccount(address)
-            .then(data => {
-                var result; 
-                var response = data.body.result;
-                response == null ? result = 0 : result = response.Account.balance;
-                return result;
-            })
-            .catch(err => {
-                throw(err);
-            });
+        .then(data => {
+            var result; 
+            var response = data.body.result;
+            response == null ? result = 0 : result = response.Account.balance;
+            return result;
+        })
+        .catch(err => {
+            throw(err);
+        });
     }
 
     getStakes(address){    
         return accounts.getValidator(address)
-            .then(data => {
-                var result; 
-                var response = data.body.result;
-                response == null ? result = 0 : result = response.Validator.stake;
-                return result;
-            })
-            .catch(err => {
-                throw(err);
-            });
+        .then(data => {
+            var result; 
+            var response = data.body.result;
+            response == null ? result = 0 : result = response.Validator.stake;
+            return result;
+        })
+        .catch(err => {
+            throw(err);
+        });
     }
 
     getSequence(address){    
         return accounts.getAccount(address)
-            .then(data => {
-                var result; 
-                var response = data.body.result;
-                response == null ? result = 0 : result = response.Account.sequence;
-                return result;
-            })
-            .catch(err => {
-                throw(err);
-            }); 
+        .then(data => {
+            var result; 
+            var response = data.body.result;
+            response == null ? result = 0 : result = response.Account.sequence;
+            return result;
+        })
+        .catch(err => {
+            throw(err);
+        }); 
     }
         
     getPermissions(address){        

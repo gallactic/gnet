@@ -82,6 +82,13 @@ program
   .action((address) => actions.accountInfo(address));
 
   program
+  .command('va_info <address>')
+  .alias('vainf')
+  .description('\nGet validator info\
+  \nyNo need to initialize a project before using this command.\n\n')
+  .action((address) => actions.validatorInfo(address));
+
+  program
   .command('list_accounts')
   .alias('lacnt')
   .description('\nLoad all accounts\

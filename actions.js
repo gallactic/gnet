@@ -230,6 +230,16 @@ module.exports = class Action {
         });
     }
 
+    validatorInfo(address){
+        this._accountHandler().validatorInfo(address)
+        .then(validator => {
+            logger.console("Validator Info:\n" + JSON.stringify(validator,null,4));
+        })
+        .catch(ex => {
+            logger.error(ex);
+        });
+    }
+
     loadAccounts(){
         this._accountHandler().loadAccounts()
         .then(accounts => {
