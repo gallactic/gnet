@@ -100,6 +100,14 @@ The parameters are pretty clear the only thing you need to care is parameters_li
     deploy contracts on the Gallactic  
     you need to initialize a project before using this command.
     
+    account_info| ainf <address>
+    Get account info of a specific address 
+    you may need to initialize a project before using this command
+    
+    validator_info| vinf <address>
+    Get validator info of a specific validator address 
+    No need to initialize a project before using this command
+    
     list_accounts|lacnt                                                  
     Load all accounts  
     you need to initialize a project before using this command.
@@ -109,15 +117,24 @@ The parameters are pretty clear the only thing you need to care is parameters_li
     No need to initialize a project before using this command.
     
     create_account|crtac <pass_phrase>                                   
-    Creates unsafe account included private key, public key and address and displays on the terminal,   
+    Creates an account and saves the encrypted private key in $HOME/g_keystore.
     No need to initialize a project before using this command.
     
     balance|blnc <address>                                               
     Get balance of a specefic account  
     No need to initialize a project before using this command.
     
+    stakes|stk <address>
+    Get stakes of validator account
+    No need to initialize a project before using this command
+    
     sequence|seq <address>                                              
     Get sequence of a specefic account  
+    No need to initialize a project before using this command.
+    
+    inspect|insp <address>
+    Inspect details of a specific account stored in the local keystore(g_keystore). 
+    This will display private key and public key.
     No need to initialize a project before using this command.
     
     transact|tx [options] <priv_key> <data> <address> <fee> <gas_limit>  

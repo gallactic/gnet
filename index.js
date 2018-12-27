@@ -75,6 +75,20 @@ program
   .action((accountname,cmd) => actions.migrate(accountname,cmd.force));
 
   program
+  .command('account_info <address>')
+  .alias('ainf')
+  .description('\nGet account info\
+  \nyou need to initialize a project before using this command.\n\n')
+  .action((address) => actions.accountInfo(address));
+
+  program
+  .command('validator_info <address>')
+  .alias('vinf')
+  .description('\nGet validator info\
+  \nyNo need to initialize a project before using this command.\n\n')
+  .action((address) => actions.validatorInfo(address));
+
+  program
   .command('list_accounts')
   .alias('lacnt')
   .description('\nLoad all accounts\
@@ -99,7 +113,7 @@ program
   .command('stakes <address>')
   .alias('stk')
   .description("\nGet stakes of validator account\
-  \nNo may need to initialize a project before using this command.\n\n")
+  \nNo need to initialize a project before using this command.\n\n")
   .action((address) => actions.getStakes(address));
   
   program
