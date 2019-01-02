@@ -25,7 +25,7 @@ $ npm install -g gnet
 ```
 Send transaction
 
-$ gnet send <priv_key> <address> <fee> 
+$ gnet send <address> <amount> <priv_key>
 
 ```
 
@@ -68,127 +68,167 @@ The parameters are pretty clear the only thing you need to care is parameters_li
 ```
     Usage: gnet [options] [command]
 
-  gnet
+ Options:
+  -V, --version                                                        output the version number
+  -h, --help                                                           output usage information
 
-  Options:
+Commands:
+  install|insl
+  install gallactic blockchain, and copy the files to the home directory (.gallactic),
+  No need to initialize project for this command.
 
-    -V, --version                                                        output the version number
-    -h, --help                                                           output usage information
 
-  Commands:
+  uninstall|unsl
+  uninstall gallactic blockchain, and back up the files to the home directory (gallactic-backup),
+  No need to initialize project for this command.
 
-    install|insl                                                         
-    install gallactic blockchain, and copy the files to the home directory (.gallactic),   
-    No need to initialize project for this command.
-    
-    uninstall|unsl                                                       
-    uninstall gallactic blockchain, and back up the files to the home directory (gallactic-backup),   
-    No need to initialize project for this command.
-    
-    run|rn                                                               
-    run gallactic blockchain,you need install gallactic first!,   
-    No need to initialize project for this command.
-    
-    init|int                                                             
-    Initialize project, makes folders and files which are needed for starting a dapp project.
-    
-    compile|cmp                                                          
-    Compile all contracts in contracts folder and makes artifacts in the build folder  
-    you need to initialize a project before using this command.
-    
-    migrate|mgt [options] [accountname]                                  
-    deploy contracts on the Gallactic  
-    you need to initialize a project before using this command.
-    
-    account_info| ainf <address>
-    Get account info of a specific address 
-    you may need to initialize a project before using this command
-    
-    validator_info| vinf <address>
-    Get validator info of a specific validator address 
-    No need to initialize a project before using this command
-    
-    list_accounts|lacnt                                                  
-    Load all accounts  
-    you need to initialize a project before using this command.
-    
-    default_accounts|dacnt                                               
-    List all predefined accounts  
-    No need to initialize a project before using this command.
-    
-    create_account|crtac <pass_phrase>                                   
-    Creates an account and saves the encrypted private key in $HOME/g_keystore.
-    No need to initialize a project before using this command.
-    
-    balance|blnc <address>                                               
-    Get balance of a specefic account  
-    No need to initialize a project before using this command.
-    
-    stakes|stk <address>
-    Get stakes of validator account
-    No need to initialize a project before using this command
-    
-    sequence|seq <address>                                              
-    Get sequence of a specefic account  
-    No need to initialize a project before using this command.
-    
-    inspect|insp <address>
-    Inspect details of a specific account stored in the local keystore(g_keystore). 
-    This will display private key and public key.
-    No need to initialize a project before using this command.
-    
-    transact|tx [options] <priv_key> <data> <address> <fee> <gas_limit>  
-    (Unsafe!) Do regular transaction to a contract, you need pass the private key of sender and address of contract  
-    you need to initialize a project before using this command.
-    
-    bond|bnd [options] <public_key> <address> <amount> <fee>  <priv_key>
-    (safe) Do Bond transaction, you need pass the private key of sender and address of reciever  
-    you may need to initialize a project before using this command.
-    
-    unbond|ubnd [options] <address> <amount> <fee> <priv_key>        
-    (safe) Do Unbond transaction, you need pass the private key of sender and address of reciever  
-    you may need to initialize a project before using this command.
-    
-    send|snd [options] <address> <amount> <priv_key>                  
-    (safe) Do regular transaction, you need pass the private key of sender and address of reciever  
-    you need to initialize a project before using this command.
-    
-    call|calf <contract_name> <function_name> [parameters_list]          
-    Calls the function of specefic contract, you need to pass the list of parameters like this var1,var2,...,varK ,comma separated,   
-    You need to initialize a project before using this command.
-    
-    chain_id|chid                                                        
-    Get chain id of the blockchain  
-    You need to initialize a project before using this command.
-    
-    genesis_hash|genhash                                                 
-    Get Genesis Hash of the blockchain  
-    You need to initialize a project before using this command.
-    
-    latest_block_height|lbckh                                            
-    Get Latest Block Hash of the blockchain  
-    You need to initialize a project before using this command.   
-    
-    info|inf                                                             
-    Get Info of the blockchain  
-    You need to initialize a project before using this command.
-    
-    latest_block|lblck                                                   
-    Get Latest Block of the blockchain  
-    You may need to initialize a project before using this command.
-    
-    block|blck <block_height>                                            
-    Get the specific Block of the blockchain  
-    You may need to initialize a project before using this command.
-        
-    list_transactions|ltxs <block_height>                                
-    Get transactions of the specific Block   
-    You may need to initialize a project before using this command.
-      
-    config|conf                                                          
-    Get the current config of the gnet  
-    If you haven't created any project gallactic url will be http://127.0.0.1:1337/rpc by default  
-    You may need to initialize a project before using this command.
+
+  run|rn
+  run gallactic blockchain,you need install gallactic first!,
+  No need to initialize project for this command.
+
+
+  init|int
+  Initialize project, makes folders and files which are needed for starting a dapp project.
+
+
+  compile|cmp
+  Compile all contracts in contracts folder and makes artifacts in the build folder
+  you need to initialize a project before using this command.
+
+
+  test|tst
+   runs tests in test folder with .js extension
+   snak test integrates mocha and chai for testing
+  you need to initialize a project before using this command.
+
+
+  migrate|mgt [options] [accountname]
+  deploy contract on the Gallactic
+  you need to initialize a project before using this command.
+
+
+  account_info|ainf <address>
+  Get account info
+  you need to initialize a project before using this command.
+
+
+  validator_info|vinf <address>
+  Get validator info
+  yNo need to initialize a project before using this command.
+
+
+  list_accounts|lacnt
+  Load all accounts
+  you need to initialize a project before using this command.
+
+
+  default_accounts|dacnt
+  List all predefined accounts
+  No need to initialize a project before using this command.
+
+
+  create_account|crtac <pass_phrase>
+  Creates an account and saves the encrypted json file in $HOME/g_keystore ,
+  No need to initialize a project before using this command.
+
+
+  stakes|stk <address>
+  Get stakes of validator account
+  No need to initialize a project before using this command.
+
+
+  balance|blnc <address>
+  Get balance of a specific account
+  No need to initialize a project before using this command.
+
+
+  inspect|insp <address> <pass_phrase>
+  Inspect details of a specific account. This will display private key and public key.
+  No need to initialize a project before using this command.
+
+
+  sequence|seq <address>
+  Get sequence of a specific account
+  No need to initialize a project before using this command.
+
+
+  transact|tx [options] <priv_key> <data> <address> <fee> <gas_limit>
+  (Unsafe!) Do regular transaction to a contract, you need pass the private key of sender and address of contract
+  you need to initialize a project before using this command.
+
+
+  bond|bnd [options] <public_key> <amount> <fee> <priv_key>
+  (safe) Do Bond transaction, you need pass the validator publickey, stake amount, transaction fee, and private key of sender
+  you may need to initialize a project before using this command.
+
+
+  unbond|ubnd [options] <address> <amount> <fee> <priv_key>
+  (safe) Do Unbond transaction, you need pass account address, stake amount, transaction fee and private key of the validator
+  you may need to initialize a project before using this command.
+  Note: you should be a validator to do unbond transaction.
+
+
+  send|snd [options] <address> <amount> <priv_key>
+  (safe) Do regular transaction, you need to pass the address of the receiver, amount and the private key of sender
+  you may need to initialize a project before using this command.
+
+
+  random_tx|rtx <count>
+  (safe) Do regular random transaction,
+  you may need to initialize a project before using this command.
+
+
+  permission|perm [options] <address> <perm_value> <priv_key>
+  (safe) Do regular permission transaction, you need to pass the permission value and address of the receiver, private key of sender
+  you may need to initialize a project before using this command.
+
+
+  *
+  call|calf <contract_name> <function_name> [parameters_list]
+  Calls the function of specific contract, you need to pass the list of parameters like this var1,var2,...,varK ,comma separated,
+  You need to initialize a project before using this command.
+
+
+  chain_id|chid
+  Get chain id of the blockchain
+  You need to initialize a project before using this command.
+
+
+  genesis_hash|genhash
+  Get Genesis Hash of the blockchain
+  You need to initialize a project before using this command.
+
+
+  latest_block_height|lbckh
+  Get Latest Block Hash of the blockchain
+  You need to initialize a project before using this command.
+
+
+  info|inf
+  Get Info of the blockchain
+  You need to initialize a project before using this command.
+
+
+  latest_block|lblck
+  Get Latest Block of the blockchain
+  You may need to initialize a project before using this command.
+
+
+  block|blck <block_height>
+  Get the specific Block of the blockchain
+  You may need to initialize a project before using this command.
+
+
+  list_transactions|ltxs <block_height>
+  Get transactions of the specific Block
+  You may need to initialize a project before using this command.
+
+
+  config|conf
+  Get the current config of the gnet
+  If you haven't created any project gallactic url will be http://127.0.0.1:1337/rpc by default
+  You may need to initialize a project before using this command.
 ```
 
 ### Example :
