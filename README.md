@@ -100,11 +100,11 @@ The parameters are pretty clear the only thing you need to care is parameters_li
     deploy contracts on the Gallactic  
     you need to initialize a project before using this command.
     
-    ac_info| acinf <address>
+    account_info| ainf <address>
     Get account info of a specific address 
     you may need to initialize a project before using this command
     
-    va_info| vainf <address>
+    validator_info| vinf <address>
     Get validator info of a specific validator address 
     No need to initialize a project before using this command
     

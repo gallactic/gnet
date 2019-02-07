@@ -1,6 +1,6 @@
 {
   "name": "gnet",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "Tooling for interacting with Gallactic blockchain node",
   "main": "index.js",
   "author": "Ahmad Pouladzadeh <pouladzade@gmail.com>",
@@ -14,8 +14,7 @@
     "md5": "2.2.1",
     "mocha": "^5.2.0",
     "promise": "8.0.1",
-    "shelljs": "0.8.1",
-    "tenderkeys": "0.0.1",
+    "shelljs": "0.8.1",    
     "topological-sort": "0.1.5",
     "truffle-compile": "3.0.10",
     "truffle-resolver": "4.0.1"

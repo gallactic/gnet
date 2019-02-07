@@ -75,15 +75,15 @@ program
   .action((accountname,cmd) => actions.migrate(accountname,cmd.force));
 
   program
-  .command('ac_info <address>')
-  .alias('acinf')
+  .command('account_info <address>')
+  .alias('ainf')
   .description('\nGet account info\
   \nyou need to initialize a project before using this command.\n\n')
   .action((address) => actions.accountInfo(address));
 
   program
-  .command('va_info <address>')
-  .alias('vainf')
+  .command('validator_info <address>')
+  .alias('vinf')
   .description('\nGet validator info\
   \nyNo need to initialize a project before using this command.\n\n')
   .action((address) => actions.validatorInfo(address));
