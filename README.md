@@ -25,7 +25,7 @@ $ npm install -g gnet
 ```
 Send transaction
 
-$ gnet send <priv_key> <address> <fee> 
+$ gnet send  <address> <amount> <priv_key>
 
 ```
 
@@ -59,7 +59,7 @@ Be sure you launch the Gallactic and put all contracts on the contract folder be
 ```
 Call smart contract's functions:
 
-$ gnet call <contract_name> <function_name> <parameters_list>
+$ gnet call <contract_name> <function_name> <parameters_list>  // Yet to be implemented
 
 The parameters are pretty clear the only thing you need to care is parameters_list, its format must be like this:   var1,var2,...,varK (comma separated)
 
@@ -141,19 +141,19 @@ The parameters are pretty clear the only thing you need to care is parameters_li
     (Unsafe!) Do regular transaction to a contract, you need pass the private key of sender and address of contract  
     you need to initialize a project before using this command.
     
-    bond|bnd [options] <public_key> <address> <amount> <fee>  <priv_key>
-    (safe) Do Bond transaction, you need pass the private key of sender and address of reciever  
+    bond|bnd [options] <public_key> <stakes> <fee> <priv_key>
+    (safe) To do Bond transaction, you need pass the validator publickey, stake amount, transaction fee, and private key of sender 
     you may need to initialize a project before using this command.
     
-    unbond|ubnd [options] <address> <amount> <fee> <priv_key>        
-    (safe) Do Unbond transaction, you need pass the private key of sender and address of reciever  
+    unbond|ubnd [options] <address> <stakes> <fee> <priv_key>        
+    (safe) To do Unbond transaction, you need pass account address, stake amount, transaction fee and private key of the validator 
     you may need to initialize a project before using this command.
     
     send|snd [options] <address> <amount> <priv_key>                  
-    (safe) Do regular transaction, you need pass the private key of sender and address of reciever  
+    (safe) To do regular transaction, you need to pass the address of the receiver, amount and the private key of sender 
     you need to initialize a project before using this command.
     
-    call|calf <contract_name> <function_name> [parameters_list]          
+    call|calf <contract_name> <function_name> [parameters_list]   //Yet to be implemented        
     Calls the function of specefic contract, you need to pass the list of parameters like this var1,var2,...,varK ,comma separated,   
     You need to initialize a project before using this command.
     
