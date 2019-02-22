@@ -159,12 +159,12 @@ Commands:
 
 
   bond|bnd [options] <public_key> <amount> <priv_key>
-  (safe) Do Bond transaction, you need pass the validator publickey, stake amount, transaction fee, and private key of sender
+  (safe) Do Bond transaction, you need pass the validator publickey, stake amount and private key of sender
   you may need to initialize a project before using this command.
 
 
   unbond|ubnd [options] <address> <amount> <priv_key>
-  (safe) Do Unbond transaction, you need pass account address, stake amount, transaction fee and private key of the validator
+  (safe) Do Unbond transaction, you need pass account address, stake amount and private key of the validator
   you may need to initialize a project before using this command.
   Note: you should be a validator to do unbond transaction.
 
@@ -180,7 +180,7 @@ Commands:
 
 
   permission|perm [options] <address> <perm_value> <priv_key>
-  (safe) Do regular permission transaction, you need to pass the permission value and address of the receiver, private key of sender
+  (safe) Do regular permission transaction, you need to pass the permission value and address of the receiver, private key of any one of the validator
   you may need to initialize a project before using this command.
 
 

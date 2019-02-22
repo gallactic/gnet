@@ -172,9 +172,9 @@ program
   
   program
   .command('permission <address> <perm_value> <priv_key>')
-  .option('-u, --unsafe', 'unsafe sending transaction') //TODO (unsafe should be implemented using privatekey)
+  .option('-u, --unsafe', 'unsafe sending transaction') //TODO 
   .alias('perm')
-  .description('\n(safe) Do regular permission transaction, you need to pass the permission value and address of the receiver, private key of sender \
+  .description('\n(safe) Do regular permission transaction, you need to pass the permission value and address of the receiver, private key of validator \
   \nyou may need to initialize a project before using this command.\n\n')
   .action((address,perm_value,priv_key) => actions.permission(address,perm_value,priv_key));
 

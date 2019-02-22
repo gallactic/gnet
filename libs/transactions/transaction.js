@@ -1,5 +1,6 @@
 "use strict";
-
+var Keys        = require('../keys');
+var keys = new Keys;
 module.exports = class Transaction {
   constructor(intergallactic) {
     this.igc = intergallactic;
@@ -17,7 +18,7 @@ module.exports = class Transaction {
   permission(address, perm_value, priv_key) {
     const myTx = {
       to: address,
-      amount: amount,
+      amount: 0,
       permissions:perm_value,
       set: true
     };
@@ -26,8 +27,9 @@ module.exports = class Transaction {
   }
 
   bond(pubKey, amount, priv_key) {
+    const vaAccount = keys.getInfoByPublicKey(pubKey)
     const myTx = {
-      to: address,
+      to: vaAccount.vaAddress,
       amount: amount,
       publicKey: pubKey
     };
