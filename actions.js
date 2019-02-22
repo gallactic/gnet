@@ -420,16 +420,16 @@ module.exports = class Action {
         });
     }
 
-    broadcastBond(pubKey,amount,fee,privKey){                
-        return this._txHandler().bond(pubKey,amount,fee,privKey).then(data =>{
+    broadcastBond(pubKey,amount,privKey){                
+        return this._txHandler().bond(pubKey,amount,privKey).then(data =>{
             logger.console("Safe Bond Tx result :\n" + JSON.stringify(data,null,4));
         }).catch(ex => {
             logger.error(ex);
         });
     }
 
-    broadcastUnbond(address,amount,fee,privKey){                
-        return this._txHandler().unbond(address,amount,fee,privKey).then(data =>{
+    broadcastUnbond(address,amount,privKey){                
+        return this._txHandler().unbond(address,amount,privKey).then(data =>{
             logger.console("Safe Unbond Tx result :\n" + JSON.stringify(data,null,4));
         }).catch(ex => {
             logger.error(ex);
